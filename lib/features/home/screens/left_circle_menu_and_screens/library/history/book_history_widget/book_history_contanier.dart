@@ -1,0 +1,260 @@
+import 'package:flutter/material.dart';
+import '../../../../../../../common/widgets/book_contanier/book_contanier.dart';
+import '../../../../../../../utils/constants/sizes.dart';
+import '../../e_library/book_widget/e_book_widget.dart';
+
+class BookHistoryContainer extends StatefulWidget {
+  final String imageUrl;
+  final String title;
+  final String author;
+  final String issueDateTime;
+  final String returnDateTime;
+
+  BookHistoryContainer({
+    Key? key,
+    required this.imageUrl,
+    required this.title,
+    required this.author,
+    required this.issueDateTime,
+    required this.returnDateTime,
+  }) : super(key: key);
+
+  @override
+  State<BookHistoryContainer> createState() => _BookHistoryContainerState();
+}
+
+class _BookHistoryContainerState extends State<BookHistoryContainer> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 0),
+      child: Container(
+        decoration: ShapeDecoration(
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          shadows: const [
+            BoxShadow(
+              color: Color(0x26000000),
+              blurRadius: 10.40,
+              offset: Offset(0, 4),
+              spreadRadius: 0,
+            )
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Row(
+            children: [
+              Column(
+                children: [
+                  Container(
+                    width: 120,
+                    height: 120,
+                    // decoration: BoxDecoration(
+                    //   borderRadius: BorderRadius.circular(30),
+                    // ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(4),
+                      child: Image.network(
+                        widget.imageUrl,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          print('Error loading image: $error');
+                          return Container(
+                            width: 120,
+                            height: 120,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              //border: Border.all(color: Colors.black),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Book cover not available',
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BookTitleWidget(title: widget.title),
+                    const SizedBox(
+                      height: ESizes.spaceBtwItems,
+                    ),
+                    // BookDescriptionWidget(description: bookData['description']),
+                    // const SizedBox(
+                    //   height: ESizes.spaceBtwItems,
+                    // ),
+                    // AuthorLabelWidget(),
+                    // const SizedBox(height: 4),
+                    AuthorNameWidget(author: widget.author),
+                    const SizedBox(
+                      height: ESizes.spaceBtwItemsHeadings,
+                    ),
+                    // AvailableQuantityWidget(
+                    //     availableQty: bookData['availableQty']),
+                    // const SizedBox(
+                    //   height: ESizes.spaceBtwItems,
+                    // ),
+                    IssueDate(
+                      issueDate: widget.issueDateTime,
+                    ),
+                    const SizedBox(
+                      height: ESizes.spaceBtwItemsHeadings,
+                    ),
+                    // IssueTime(issueTime: bookData['issueTime'],
+                    // ),
+                    // const SizedBox(
+                    //   height: ESizes.spaceBtwItems,
+                    // ),
+                    ReturnDate(
+                      returnDate: widget.returnDateTime,
+                    ),
+                    const SizedBox(
+                      height: ESizes.spaceBtwItemsHeadings,
+                    ),
+                    // ReturnTime(returnTime: bookData['returnTime'],
+                    // ),
+                    // const SizedBox(
+                    //   height: ESizes.spaceBtwItems,
+                    // ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// import 'package:flutter/material.dart';
+// import '../../../../../../../common/widgets/book_contanier/book_contanier.dart';
+// import '../../../../../../../utils/constants/sizes.dart';
+// import '../../e_library/book_widget/e_book_widget.dart';
+//
+// class BookHistoryContainer extends StatelessWidget {
+//   final Map<String, dynamic> bookData;
+//
+//   const BookHistoryContainer({Key? key, required this.bookData}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.only(bottom: 16),
+//       child: Container(
+//         decoration: ShapeDecoration(
+//           color: Colors.white,
+//           shape: RoundedRectangleBorder(
+//             borderRadius: BorderRadius.circular(15),
+//           ),
+//           shadows: const [
+//             BoxShadow(
+//               color: Color(0x26000000),
+//               blurRadius: 10.40,
+//               offset: Offset(0, 4),
+//               spreadRadius: 0,
+//             )
+//           ],
+//         ),
+//         child: Padding(
+//           padding: const EdgeInsets.all(12.0),
+//           child: Row(
+//             children: [
+//               Column(
+//                 children: [
+//
+//                   Container(
+//                     width: 130.0,
+//                     height: 144.69,
+//                     child: Image.network(
+//                       widget.imageUrl,
+//                       errorBuilder: (context, error, stackTrace) {
+//                         print('Error loading image: $error');
+//                         return Container(
+//                           width: 130.0,
+//                           height: 144.69,
+//                           decoration: BoxDecoration(
+//                             borderRadius: BorderRadius.circular(10),
+//                             border: Border.all(color: Colors.black),
+//                           ),
+//                           child: Center(
+//                             child: Text(
+//                               'Book cover not available',
+//                               textAlign: TextAlign.center,
+//                             ),
+//                           ),
+//                         );
+//                       },
+//                     ),
+//                   ),
+//
+//                 ],
+//               ),
+//               const SizedBox(width: 8),
+//               Expanded(
+//                 child: Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     BookTitleWidget(title: bookData['title']),
+//                     const SizedBox(
+//                       height: ESizes.spaceBtwItems,
+//                     ),
+//                     BookDescriptionWidget(description: bookData['description']),
+//                     const SizedBox(
+//                       height: ESizes.spaceBtwItems,
+//                     ),
+//                     AuthorLabelWidget(),
+//                     const SizedBox(height: 4),
+//                     AuthorNameWidget(author: bookData['author']),
+//                     const SizedBox(
+//                       height: ESizes.spaceBtwItems,
+//                     ),
+//                     AvailableQuantityWidget(
+//                         availableQty: bookData['availableQty']),
+//                     const SizedBox(
+//                       height: ESizes.spaceBtwItems,
+//                     ),
+//                     IssueDate(issueDate: bookData['issueDate'],
+//                     ),
+//                     const SizedBox(
+//                       height: ESizes.spaceBtwItems,
+//                     ),
+//                     IssueTime(issueTime: bookData['issueTime'],
+//                     ),
+//                     const SizedBox(
+//                       height: ESizes.spaceBtwItems,
+//                     ),
+//                     ReturnDate(returnDate: bookData['returnDate'],
+//                     ),
+//                     const SizedBox(
+//                       height: ESizes.spaceBtwItems,
+//                     ),
+//                     ReturnTime(returnTime: bookData['returnTime'],
+//                     ),
+//                     const SizedBox(
+//                       height: ESizes.spaceBtwItems,
+//                     ),
+//
+//
+//                   ],
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

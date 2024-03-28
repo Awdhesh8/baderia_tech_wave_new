@@ -1,0 +1,35 @@
+{
+    "name": "baderia_tech_wave",
+    "short_name": "baderia_tech_wave",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": ""Welcome to the Global College app! It's your all-in-one tool for everything college-related. As a student, you can check your grades, see your fees, and dive into our digital library to download eBooks for your studies. You can even save books for later! And hey, staff members can use it too, to keep track of student records and more. It's like having the college in your pocket!"",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
