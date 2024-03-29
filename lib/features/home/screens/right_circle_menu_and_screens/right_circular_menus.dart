@@ -311,6 +311,7 @@ class _RightSideCircularScrollingBoxesState
                           // 'assets/images/Rectangle_big.png',
                           width: boxWidth + 4,
                           height: boxHeight + 30,
+                          //color: EColors.imagePrimary,
                           alignment: Alignment.center,
                         ),
                       ),
@@ -345,8 +346,8 @@ class _RightSideCircularScrollingBoxesState
                                   // color: isSelected[index]
                                   //     ? EColors.white
                                   //     : EColors.textColorPrimary1,
-                                  color: EColors.textColorPrimary1,
-                                  // : const Color.fromRGBO(16, 34, 130, 1),
+                                  //color: EColors.textColorPrimary1,
+                                   color: EColors.textPrimary1,
                                   fontSize: fontSize,
                                   fontWeight: FontWeight.w500,
                                 ),

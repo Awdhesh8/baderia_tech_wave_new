@@ -131,6 +131,7 @@ class _LeftSideCircularScrollingBoxesState
                                       ? 'assets/images/disable_rectangle.png'
                                       : 'assets/images/Rectangle_big.png',
                                   width: boxWidth + 4,
+                                  // color: EColors.imagePrimary,
                                   height: boxHeight + 30,
                                   alignment: Alignment.center,
                                 ),
@@ -155,7 +156,9 @@ class _LeftSideCircularScrollingBoxesState
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             fontFamily: 'Inter',
-                                            color: EColors.textColorPrimary1,
+                                            //color: Color.fromRGBO(52, 55, 76, 1),
+                                             color: EColors.textPrimary1,
+                                             // color: EColors.textColorPrimary1,
                                             fontSize: fontSize,
                                             fontWeight: FontWeight.w500,
                                           ),

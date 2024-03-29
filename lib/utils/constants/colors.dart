@@ -7,6 +7,7 @@ class EColors {
   static const Color primary = Color.fromRGBO(227, 30, 36, 1);
   static const Color primarySecond = Color.fromRGBO(250, 170, 147, 1);
   static const Color secondary = Color(0xFFFFE24B);
+  static const Color primary1 = Color(0xFFE31E25);
   static const Color accent = Color(0xFFb0c7ff);
   static const Color backgroundColor = Color.fromRGBO(255, 244, 244, 1);
   static const Color circleAvatar = Color.fromRGBO(255, 235, 235, 1);
@@ -80,6 +81,13 @@ class EColors {
 
 
   // Text Colors
+  static const Color textPrimary = Color.fromRGBO(52, 55, 76, 1);
+  static const Color textPrimary1 = Color(0xFF350000);
+  static const Color imagePrimary = Color(0xFFffd8d1);
+  static const Color imagePrimary1 = Color.fromRGBO(250, 170, 147, 50);
+  // static const Color imagePrimary1 = Color(0xFFFAAA93);
+  // static const Color textPrimary = Color.fromRGBO(52, 55, 76, 1);
+
   static const Color textPrimaryHeading = Color.fromRGBO(227, 30, 37, 1);
   static const Color textSecondaryTitle = Color(0xFF686868);
   static const Color textWhite = Colors.white;
