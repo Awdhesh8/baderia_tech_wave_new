@@ -37,6 +37,7 @@ class _ProfileBoxState extends State<ProfileBox> {
   Widget build(BuildContext context) {
     print('Profile Data: $profileData');
     return FlipCard(
+
       direction: FlipDirection.VERTICAL,
       flipOnTouch: true,
       front: profileData != null ? buildFront() : buildShimmer(),
@@ -77,7 +78,8 @@ class _ProfileBoxState extends State<ProfileBox> {
               width: containerWidth,
               height: 140,
               decoration: BoxDecoration(
-                color: EColors.primary1,
+                // color: EColors.primary1,
+                color: EColors.secondary11,
                 // color: EColors.primarySecond,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [

@@ -33,10 +33,10 @@ class UserProfileWidget extends StatelessWidget {
           ),
         ),
         const Positioned(
-          top: 22,
+          top: 18,
           right: -10,
           width: 190,
-          height: 20,
+          height: 22,
           child: ECircularContainer(
             backgroundColor: EColors.circleAvatar,
           ),
@@ -47,7 +47,7 @@ class UserProfileWidget extends StatelessWidget {
           width: 55,
           height: 50,
           child: ECircularContainer(
-            backgroundColor: EColors.circleAvatar,
+            backgroundColor: EColors.primary,
           ),
         ),
         const Positioned(
@@ -111,7 +111,7 @@ class UserProfileWidget extends StatelessWidget {
                           color: EColors.textPrimary,
                           // color: EColors.textPrimary,
                           fontFamily: 'Inter',
-                          fontSize: 14.5,
+                          fontSize: 15.5,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -122,9 +122,9 @@ class UserProfileWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontFamily: 'Inter',
-                          color: EColors.white,
+                          color: EColors.textColorPrimary1,
                           // color: EColors.textColorPrimary1,
-                          fontSize: 11,
+                          fontSize: 13,
                           fontWeight: FontWeight.bold
                         ),
                       ),
@@ -134,9 +134,9 @@ class UserProfileWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontFamily: 'Inter',
-                          color: EColors.white,
+                          color: EColors.textColorPrimary1,
                           // color: EColors.textColorPrimary1,
-                          fontSize: 11,
+                          fontSize: 13,
                             fontWeight: FontWeight.bold
                         ),
                       ),
@@ -146,9 +146,9 @@ class UserProfileWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontFamily: 'Inter',
-                          color: EColors.white,
+                          color: EColors.textColorPrimary1,
                           // color: EColors.textColorPrimary1,
-                          fontSize: 11,
+                          fontSize: 13,
                             fontWeight: FontWeight.bold
                         ),
                       ),
@@ -162,7 +162,7 @@ class UserProfileWidget extends StatelessWidget {
         // Small container with text
         Positioned(
           bottom: 0,
-          right: 10,
+          right: 8,
           child: Container(
             padding: const EdgeInsets.all(6),
             // decoration: const BoxDecoration(
@@ -175,8 +175,9 @@ class UserProfileWidget extends StatelessWidget {
             child: const Text(
               'Tap',
               style: TextStyle(
-                color: EColors.primary,
-                fontSize: 12,
+                color: EColors.white,
+                fontSize: 14,
+                fontFamily: 'Inter',
                 fontWeight: FontWeight.bold,
               ),
             ),

@@ -8,6 +8,8 @@ class EColors {
   static const Color primarySecond = Color.fromRGBO(250, 170, 147, 1);
   static const Color secondary = Color(0xFFFFE24B);
   static const Color primary1 = Color(0xFFE31E25);
+  static const Color secondary11 = Color(0xFFEDE9D0);
+  static const Color darkButton = Color(0xFE3A001E);
   static const Color accent = Color(0xFFb0c7ff);
   static const Color backgroundColor = Color.fromRGBO(255, 244, 244, 1);
   static const Color circleAvatar = Color.fromRGBO(255, 235, 235, 1);

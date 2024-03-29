@@ -129,6 +129,7 @@ class _LeftSideCircularScrollingBoxesState
                                 child: Image.asset(
                                   isUnderDevelopmentLeftMenus(index)
                                       ? 'assets/images/disable_rectangle.png'
+                                     // : 'assets/Backgrounds/angle1.png',
                                       : 'assets/images/Rectangle_big.png',
                                   width: boxWidth + 4,
                                   // color: EColors.imagePrimary,
