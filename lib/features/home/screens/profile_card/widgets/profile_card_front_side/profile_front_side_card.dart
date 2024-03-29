@@ -125,7 +125,7 @@ class UserProfileWidget extends StatelessWidget {
                           color: EColors.textColorPrimary1,
                           // color: EColors.textColorPrimary1,
                           fontSize: 13,
-                          fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.w500
                         ),
                       ),
                       Text(
@@ -137,7 +137,7 @@ class UserProfileWidget extends StatelessWidget {
                           color: EColors.textColorPrimary1,
                           // color: EColors.textColorPrimary1,
                           fontSize: 13,
-                            fontWeight: FontWeight.bold
+                            fontWeight: FontWeight.w500
                         ),
                       ),
                       Text(
@@ -149,7 +149,7 @@ class UserProfileWidget extends StatelessWidget {
                           color: EColors.textColorPrimary1,
                           // color: EColors.textColorPrimary1,
                           fontSize: 13,
-                            fontWeight: FontWeight.bold
+                            fontWeight: FontWeight.w500
                         ),
                       ),
                     ],

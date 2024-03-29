@@ -79,8 +79,8 @@ class _ProfileBoxState extends State<ProfileBox> {
               height: 140,
               decoration: BoxDecoration(
                 // color: EColors.primary1,
-                color: EColors.secondary11,
-                // color: EColors.primarySecond,
+               // color: EColors.secondary11,
+                 color: EColors.primarySecond,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   BoxShadow(
