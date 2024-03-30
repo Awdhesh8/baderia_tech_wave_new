@@ -94,7 +94,7 @@ class NavigationController extends GetxController {
   final screens = [
     const MyHomePage(),
     TimeTable(),
-    AttendanceScreen(),
+    AttendanceScreen(status: false,),
     // const Notice(),
     SettingsScreen(),
   ];

@@ -11,15 +11,22 @@ import 'attendance_controller/attendance_controller.dart';
 import 'attendance_widgets/example_attendance_boxes.dart';
 
 class AttendanceScreen extends StatelessWidget {
+  bool status = true;
+
+
+ AttendanceScreen({
+  required this.status,});
   final AttendanceController controller = Get.put(AttendanceController());
+  //final bool status = true;
+  // final bool status = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: EColors.backgroundColor,
-      appBar: const GAppBar(
+      appBar:  GAppBar(
         centerTitle: false,
-        // showBackArrow: true,
+         showBackArrow: status,
         backgroundColor: Colors.transparent,
         title: Text(
           'Attendance',

@@ -56,7 +56,7 @@ class UserProfileWidget extends StatelessWidget {
           width: 170,
           height: 125,
           child: ECircularContainer(
-            backgroundColor: EColors.circleAvatar,
+            backgroundColor: EColors.primary,
           ),
         ),
         Positioned(

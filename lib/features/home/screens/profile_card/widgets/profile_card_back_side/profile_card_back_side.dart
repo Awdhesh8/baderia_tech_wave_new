@@ -124,7 +124,7 @@ class BackUserDetailsWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(15),
       decoration: ShapeDecoration(
-        color: EColors.primarySecond,
+        color: EColors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -153,10 +153,10 @@ class BackUserDetailsWidget extends StatelessWidget {
                   Text(
                     'Father Name:  $fatherName',
                     style: const TextStyle(
-                      color: EColors.white,
+                      color: EColors.textColorPrimary1,
                       fontSize: 13,
                       fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -164,37 +164,37 @@ class BackUserDetailsWidget extends StatelessWidget {
                   Text(
                     'Mother Name:  $motherName',
                     style: const TextStyle(
-                      color: EColors.white,
+                      color: EColors.textColorPrimary1,
                       fontSize: 13,
                       fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   Text(
                     'Date Of Birth: $dateOfBirth',
                     style: const TextStyle(
-                      color: EColors.white,
+                      color: EColors.textColorPrimary1,
                       fontSize: 13,
                       fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   Text(
                     'Contact: $mobile',
                     style: const TextStyle(
-                      color: EColors.white,
+                      color: EColors.textColorPrimary1,
                       fontSize: 13,
                       fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   Text(
                     'Email: $email',
                     style: const TextStyle(
-                      color: EColors.white,
+                      color: EColors.textColorPrimary1,
                       fontSize: 13,
                       fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
 

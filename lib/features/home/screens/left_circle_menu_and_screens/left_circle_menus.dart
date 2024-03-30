@@ -200,7 +200,7 @@ class _LeftSideCircularScrollingBoxesState
         break;
         case 2:
           case 12:
-        screen = () => AttendanceScreen();
+        screen = () => AttendanceScreen(status: true,);
         break;
       case 3:
       case 13:
