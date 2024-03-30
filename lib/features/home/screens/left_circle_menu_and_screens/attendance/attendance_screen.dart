@@ -11,11 +11,11 @@ import 'attendance_controller/attendance_controller.dart';
 import 'attendance_widgets/example_attendance_boxes.dart';
 
 class AttendanceScreen extends StatelessWidget {
-  bool status = true;
+  final bool status;
 
 
  AttendanceScreen({
-  required this.status,});
+ this.status = true,});
   final AttendanceController controller = Get.put(AttendanceController());
   //final bool status = true;
   // final bool status = true;
