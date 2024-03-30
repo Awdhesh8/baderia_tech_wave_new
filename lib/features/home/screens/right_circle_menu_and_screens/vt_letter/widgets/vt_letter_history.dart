@@ -1,3 +1,5 @@
+import 'package:baderia_tech_wave/common/widgets/continue_border_Deco_rectangle/continue_border_rectangle.dart';
+import 'package:baderia_tech_wave/utils/constants/teext_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../../data/api/api_services.dart';
@@ -23,7 +25,7 @@ class VtletterHistory extends StatelessWidget {
         } else {
           // Convert dynamic list to List<Map<String, dynamic>>
           List<Map<String, dynamic>> historyList =
-          List<Map<String, dynamic>>.from(snapshot.data!);
+              List<Map<String, dynamic>>.from(snapshot.data!);
 
           // Display leave application history using ListView.builder
           controller.vtLetterHistory.clear();
@@ -31,37 +33,55 @@ class VtletterHistory extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: historyList.length,
-
             itemBuilder: (context, index) {
               final gatePassData = historyList[index];
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Card(
-                    child: Column(
-                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                       Padding(
-                         padding: const EdgeInsets.all(15.0),
-                         child: Column(
-                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                           children: [
-                             Text("From: ${gatePassData['vt_frmdt']}"),
-                             Text("To: ${gatePassData['vt_tilldt']}"),
-                             Text("${gatePassData['vtp_locat']}"),
-                             Text("Training Day's: ${gatePassData['vt_tday']}"),
-                             Text("Day's: ${gatePassData['vt_tday']}"),
-                             Text("Day's: ${gatePassData['vt_tday']}"),
-                           ],
-                         ),
-                       ),
-
-                      ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: CustomDeco.basicContainer(),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "To: ${gatePassData['vtp_to']}",
+                                  style: TextStyleClass.bodyText3,
+                                ),
+                                Text("Location: ${gatePassData['vtp_locat']}",
+                                    style: TextStyleClass.bodyText3),
+                                Text("From Date: ${gatePassData['vt_frmdt']}",
+                                    style: TextStyleClass.bodyText3),
+                                Text("To Date: ${gatePassData['vt_tilldt']}",
+                                    style: TextStyleClass.bodyText3),
+                                Text(
+                                    "Training Day's: ${gatePassData['vt_tday']}",
+                                    style: TextStyleClass.bodyText3),
+                                Text("Total Days: ${gatePassData['vt_tday']}",
+                                    style: TextStyleClass.bodyText3),
+                                Text("Day's: ${gatePassData['vt_tday']}",
+                                    style: TextStyleClass.bodyText3),
+                                Text(
+                                    "Head of Department Status: ${gatePassData['vt_hodstatus']}",
+                                    style: TextStyleClass.bodyText3),
+                                Text(
+                                    "Director Status: ${gatePassData['vt_dirstatus']}",
+                                    style: TextStyleClass.bodyText3),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-
                 ],
               );
             },

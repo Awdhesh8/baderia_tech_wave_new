@@ -1,3 +1,5 @@
+import 'package:baderia_tech_wave/common/widgets/appbar/appbar.dart';
+import 'package:baderia_tech_wave/utils/constants/teext_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
@@ -63,17 +65,12 @@ class Activity extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
+      appBar: const GAppBar(
+        showBackArrow: true,
         backgroundColor: Colors.transparent,
-        elevation: 0,
         title: Text(
           'Activities',
-          style: TextStyle(
-            fontSize: 24,
-            fontFamily: 'Montserrat',
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
+          style: TextStyleClass.appBarTextStyle
         ),
       ),
       body: Obx(() {
@@ -83,12 +80,12 @@ class Activity extends StatelessWidget {
         } else {
           // Once API response is received, show actual data
           return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: controller.eventData.map((event) {
                 return Container(
-                  margin: EdgeInsets.only(bottom: 20),
+                  margin: const EdgeInsets.only(bottom: 20),
                   decoration: BoxDecoration(
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(20),
@@ -97,7 +94,7 @@ class Activity extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.3),
                         spreadRadius: 2,
                         blurRadius: 5,
-                        offset: Offset(0, 2),
+                        offset: const Offset(0, 2),
                       ),
                     ],
                   ),
@@ -105,7 +102,7 @@ class Activity extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.vertical(
+                        borderRadius: const BorderRadius.vertical(
                           top: Radius.circular(20),
                         ),
                         child: Image.network(
@@ -115,7 +112,7 @@ class Activity extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(12),
+                        padding: const EdgeInsets.all(12),
                         child: Row(
                           children: [
                             Column(
@@ -123,14 +120,14 @@ class Activity extends StatelessWidget {
                               children: [
                                 Text(
                                   event.event,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                   ),
                                 ),
-                                SizedBox(height: 8),
+                                const SizedBox(height: 8),
                                 Text(
                                   'Venue: ${event.venue}',
                                   style: TextStyle(
@@ -139,7 +136,7 @@ class Activity extends StatelessWidget {
                                     color: Colors.grey[700],
                                   ),
                                 ),
-                                SizedBox(height: 4),
+                                const SizedBox(height: 4),
                                 Text(
                                   'Date: ${event.date}',
                                   style: TextStyle(
@@ -148,7 +145,7 @@ class Activity extends StatelessWidget {
                                     color: Colors.grey[700],
                                   ),
                                 ),
-                                SizedBox(height: 4),
+                                const SizedBox(height: 4),
                                 Text(
                                   'Time: ${event.time}',
                                   style: TextStyle(
@@ -508,7 +505,7 @@ class ShimmerList extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 30,),
+          const SizedBox(height: 30,),
           Column(
             children: List.generate(
               5,
@@ -560,19 +557,19 @@ class CardContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               event,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Inter'
               ),
             ),
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
@@ -584,7 +581,7 @@ class CardContent extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(

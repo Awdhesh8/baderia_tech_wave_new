@@ -1,3 +1,5 @@
+import 'package:baderia_tech_wave/common/widgets/continue_border_Deco_rectangle/continue_border_rectangle.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:baderia_tech_wave/features/home/screens/profile_card/widgets/profile_card_back_side/profile_card_back_side.dart';
 import 'package:baderia_tech_wave/features/home/screens/profile_card/widgets/profile_card_front_side/profile_front_side_card.dart';
@@ -29,15 +31,18 @@ class _ProfileBoxState extends State<ProfileBox> {
         profileData = data;
       });
     } catch (e) {
-      print('Error fetching profile data: $e');
+      if (kDebugMode) {
+        print('Error fetching profile data: $e');
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    print('Profile Data: $profileData');
+    if (kDebugMode) {
+      print('Profile Data: $profileData');
+    }
     return FlipCard(
-
       direction: FlipDirection.VERTICAL,
       flipOnTouch: true,
       front: profileData != null ? buildFront() : buildShimmer(),
@@ -64,23 +69,27 @@ class _ProfileBoxState extends State<ProfileBox> {
   Widget buildFront() {
     double containerWidth = MediaQuery.of(context).size.width * 0.9;
 
-    if (profileData?['response'] != null && profileData!['response'].isNotEmpty) {
+    if (profileData?['response'] != null &&
+        profileData!['response'].isNotEmpty) {
       var responseData = profileData!['response'][0];
 
       // Check if 'response' contains 'student_name' and 'GNo' keys
-      if (responseData.containsKey('student_name') && responseData.containsKey('GNo')) {
+      if (responseData.containsKey('student_name') &&
+          responseData.containsKey('GNo')) {
         // Use the profile photo URL if available, otherwise use a default image URL
-        String imageUrl = responseData['Profile_photo'] ?? 'assets/avaters/Avatar Default.jpg';
+        String imageUrl = responseData['Profile_photo'] ??
+            'assets/avaters/Avatar Default.jpg';
 
         return Column(
           children: [
             Container(
               width: containerWidth,
               height: 140,
+              // decoration: CustomDeco.basicContainer(),
               decoration: BoxDecoration(
                 // color: EColors.primary1,
-               // color: EColors.secondary11,
-                 color: EColors.primarySecond,
+                // color: EColors.secondary11,
+                color: EColors.primarySecond,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   BoxShadow(
@@ -165,7 +174,9 @@ class _ProfileBoxState extends State<ProfileBox> {
   }
 
   Widget buildBack() {
-    if (profileData != null && profileData!['response'] != null && profileData!['response'].isNotEmpty) {
+    if (profileData != null &&
+        profileData!['response'] != null &&
+        profileData!['response'].isNotEmpty) {
       var responseData = profileData!['response'][0];
 
       return BackUserDetailsWidget(
@@ -179,8 +190,8 @@ class _ProfileBoxState extends State<ProfileBox> {
     } else {
       // Handle the case when response or its sublist are null or empty
       return Container(
-        // Your fallback UI or message for when the data is not available
-      );
+          // Your fallback UI or message for when the data is not available
+          );
     }
   }
 
@@ -196,7 +207,6 @@ class _ProfileBoxState extends State<ProfileBox> {
   }
 
    */
-
 }
 
 /// Correct Original code

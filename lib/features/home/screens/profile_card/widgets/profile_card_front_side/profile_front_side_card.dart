@@ -52,13 +52,234 @@ class UserProfileWidget extends StatelessWidget {
         ),
         const Positioned(
           top: 7,
-          left: -47,
-          width: 170,
+          left: -67,
+          width: 190,
           height: 125,
           child: ECircularContainer(
             backgroundColor: EColors.primary,
           ),
         ),
+        Positioned(
+          left: 7,
+          top: 20,
+          child: Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              border: Border.all(
+                color: Colors.white,
+                width: 4,
+              ),
+            ),
+            child:
+            ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: imageUrl.isNotEmpty
+                  ? Image.network(
+                imageUrl,
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.contain,
+              )
+                  : Container(), // Handle the case when imageUrl is empty
+            ),
+          ),
+        ),
+        Positioned(
+          top: -20,
+          left: 20,
+          right: 0,
+          bottom: 0,
+          child: Container(
+            padding: const EdgeInsets.only(right: 15),
+            alignment: Alignment.centerRight,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        name,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: true,
+                        style: const TextStyle(
+                          color: EColors.textPrimary,
+                          // color: EColors.textPrimary,
+                          fontFamily: 'Inter',
+                          fontSize: 15.5,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 7),
+                      Text(
+                        enroll,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontFamily: 'Inter',
+                            color: EColors.textColorPrimary1,
+                            // color: EColors.textColorPrimary1,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500
+                        ),
+                      ),
+                      Text(
+                        "Branch: $branch",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontFamily: 'Inter',
+                            color: EColors.textColorPrimary1,
+                            // color: EColors.textColorPrimary1,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500
+                        ),
+                      ),
+                      Text(
+                        'Course Type: $courseType',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontFamily: 'Inter',
+                            color: EColors.textColorPrimary1,
+                            // color: EColors.textColorPrimary1,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        // Small container with text
+        Positioned(
+          bottom: 0,
+          right: 8,
+          child: Container(
+            padding: const EdgeInsets.all(6),
+            // decoration: const BoxDecoration(
+            //   // color: EColors.white,
+            //   borderRadius: BorderRadius.only(
+            //     topLeft: Radius.circular(10),
+            //     bottomRight: Radius.circular(10),
+            //   ),
+            // ),
+            child: const Text(
+              'Tap',
+              style: TextStyle(
+                color: EColors.white,
+                fontSize: 14,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+/// This is correct code
+/*
+import 'package:flutter/material.dart';
+import '../../../../../../common/widgets/custom_shapes/containers/circular_contanier.dart';
+import '../../../../../../utils/constants/colors.dart';
+
+class UserProfileWidget extends StatelessWidget {
+  final String imageUrl;
+  final String name;
+  final String branch;
+  final String courseType;
+  final String enroll;
+
+  const UserProfileWidget({
+    Key? key,
+    required this.imageUrl,
+    required this.name,
+    required this.branch,
+    required this.courseType,
+    required this.enroll,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        // Background Custom Shapes
+        /*
+        const Positioned(
+          top: -5,
+          left: -50,
+          width: 190,
+          height: 150,
+          child: ECircularContainer(
+            backgroundColor: EColors.white,
+          ),
+        ),
+         */
+        const Positioned(
+          top: 18,
+          right: -10,
+          width: 190,
+          height: 22,
+          child: ECircularContainer(
+            backgroundColor: EColors.circleAvatar,
+          ),
+        ),
+        Positioned(
+          bottom: 10,
+          right: 0,
+          width: 40,
+          height: 25,
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0xFFFFC1C5).withOpacity(.5),
+                  offset: Offset(0, 2),
+                  blurRadius: 0,
+                  spreadRadius: 1,
+                ),
+              ],
+              color: EColors.primary,
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20))
+            ),
+          ),
+        ),
+
+        /*
+        Positioned(
+          top: 10,
+          left: 2,
+          width: 190,
+          height: 120,
+          child: Container(
+            decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xFFFFC1C5).withOpacity(.5),
+                    offset: Offset(0, 2),
+                    blurRadius: 0,
+                    spreadRadius: 1,
+                  ),
+                ],
+                color: EColors.primary,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20))
+            ),
+          ),
+        ),
+         */
+
         Positioned(
           left: 7,
           top: 20,
@@ -161,10 +382,10 @@ class UserProfileWidget extends StatelessWidget {
         ),
         // Small container with text
         Positioned(
-          bottom: 0,
-          right: 8,
+          bottom: 8,
+          right: 2,
           child: Container(
-            padding: const EdgeInsets.all(6),
+            padding: const EdgeInsets.all(4),
             // decoration: const BoxDecoration(
             //   // color: EColors.white,
             //   borderRadius: BorderRadius.only(
@@ -183,11 +404,15 @@ class UserProfileWidget extends StatelessWidget {
             ),
           ),
         ),
+        //
+
       ],
     );
   }
 }
 
+
+ */
 
 
 /*

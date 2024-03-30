@@ -109,6 +109,7 @@ class CircularMenuWithCircle extends StatelessWidget {
 
 
 import 'package:flutter/cupertino.dart';
+import '../common/widgets/animations/common_animation.dart';
 import '../extra code/extra_codes/circle.dart';
 import '../features/home/screens/left_circle_menu_and_screens/left_circle_menus.dart';
 import '../features/home/screens/right_circle_menu_and_screens/right_circular_menus.dart';
@@ -131,7 +132,7 @@ class CircularMenuWithCircle extends StatelessWidget {
             LeftSideCircularScrollingBoxes(
               onIndexChanged: onIndexChanged,
             ),
-            Positioned(
+            const Positioned(
               top: 110.4,
               right: 95,
               child: RankingCircleText(
@@ -141,7 +142,7 @@ class CircularMenuWithCircle extends StatelessWidget {
             ),
           ],
         ),
-        Stack(
+        const Stack(
           children: [
             Positioned(
               top: 110.4,

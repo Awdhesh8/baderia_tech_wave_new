@@ -234,4 +234,28 @@ class CustomDeco {
     );
   }
 
+  ///  container
+  static BoxDecoration basicContainer() {
+    return BoxDecoration(
+      shape: BoxShape.rectangle,
+      borderRadius: BorderRadius.circular(12),
+      // border: Border.all(color: Colors.black12),
+      color: Colors.white,
+      boxShadow: [
+        BoxShadow(
+          color: Color(0xFFFFC1C5).withOpacity(.5),
+          offset: Offset(0, 2),
+          blurRadius: 0,
+          spreadRadius: 1,
+        ),
+        BoxShadow(
+          color: Colors.white,
+          offset: Offset(-3, -3),
+          blurRadius: 5,
+          spreadRadius: 1,
+        ),
+      ],
+    );
+  }
+
 }
