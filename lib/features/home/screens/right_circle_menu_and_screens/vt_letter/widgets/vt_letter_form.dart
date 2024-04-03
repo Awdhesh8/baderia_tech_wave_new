@@ -319,22 +319,31 @@ class VTLetterForm extends StatelessWidget {
           ),
         ),
         child: MultiSelectBottomSheet(
-          title: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: Container(
-                  width: 150,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: EColors.grey,
+          checkColor: EColors.lightContainer,
+          cancelText: const Text('Cancel', style: TextStyle(fontFamily: 'Inter',color: Colors.redAccent),),
+          title:
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                RichText(
+                  text: const TextSpan(
+                    text: 'Tap Into Careers',
+                    style: TextStyleClass.feesSummaryText,
                   ),
                 ),
-              ),
-            ],
+                RichText(
+                  text: const TextSpan(
+                    text: ' (Drag to select more)',
+                    style: TextStyleClass.labelText1,
+                  ),
+                ),
+              ],
+            ),
           ),
+          itemsTextStyle: TextStyleClass.bodyText,
           items: controller.items
               .map((item) => MultiSelectItem<Item>(item, item.name))
               .toList(),
@@ -352,12 +361,63 @@ class VTLetterForm extends StatelessWidget {
           },
         ),
       ),
+      isScrollControlled: true,
       enterBottomSheetDuration: const Duration(milliseconds: 100),
       ignoreSafeArea: true,
       exitBottomSheetDuration: const Duration(milliseconds: 500),
     );
   }
 
+/*
+  /// Old Bottom sheet code
+  void _showMultiSelect() async {
+    Get.bottomSheet(
+      Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: MultiSelectBottomSheet(
+          checkColor: EColors.lightContainer,
+          cancelText: const Text('Cancel', style: TextStyle(fontFamily: 'Inter',color: Colors.redAccent),),
+          title:
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: RichText(
+              text: const TextSpan(
+                text: 'Tap Into Careers',
+                style: TextStyleClass.feesSummaryText,
+              ),
+            ),
+          ),
+          itemsTextStyle: TextStyleClass.bodyText,
+          items: controller.items
+              .map((item) => MultiSelectItem<Item>(item, item.name))
+              .toList(),
+          initialValue: controller.selectedItems,
+          onConfirm: (values) {
+            controller.selectedItems.assignAll(values);
+            controller.vtLocationIds =
+                controller.selectedItems.map((item) => item.id).join(",");
+            if (kDebugMode) {
+              print('From: ${controller.fromController}');
+              print('To  : ${controller.toController}');
+              print('day : ${controller.totalDayController}');
+              print('IDs : ${controller.vtLocationIds}');
+            }
+          },
+        ),
+      ),
+      isScrollControlled: true,
+      enterBottomSheetDuration: const Duration(milliseconds: 100),
+      ignoreSafeArea: true,
+      exitBottomSheetDuration: const Duration(milliseconds: 500),
+    );
+  }
+*/
 
 /*
   void _showMultiSelect() async {

@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Baderia College App',
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: ThemeMode.system, // Use system theme mode
+      title: 'Baderia Engineering',
+       theme: lightTheme,
+      // darkTheme: darkTheme,
+      //themeMode: ThemeMode.system, // Use system theme mode
       initialRoute: AppRoutes.splash, // The initial route
       getPages: AppRoutes.routes,
       // home: const SplashScreen(),

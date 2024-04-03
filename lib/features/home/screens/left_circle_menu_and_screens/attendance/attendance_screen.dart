@@ -1,8 +1,10 @@
+import 'package:baderia_tech_wave/common/widgets/continue_border_Deco_rectangle/continue_border_rectangle.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:baderia_tech_wave/common/widgets/appbar/appbar.dart';
 import 'package:baderia_tech_wave/utils/constants/colors.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../../common/widgets/texts/top_first_heading.dart';
@@ -56,12 +58,16 @@ class AttendanceScreen extends StatelessWidget {
                 child: Container(
                     // height: 300,
                     // width: 300,
+                    // decoration: CustomDeco.backgroundContainer1(),
+                  
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: const [
                           BoxShadow(blurRadius: 8, color: Colors.black12)
-                        ]),
+                        ]
+                    ),
+
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       // child: MyCalendar(),
@@ -330,6 +336,7 @@ class _CalendarPageState extends State<CalendarPage> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4, left: 4, right: 4, top: 8),
       child: Container(
+        // decoration: CustomDeco.decoRectangle4(),
         decoration: BoxDecoration(
           color: Colors.blue.shade50,
           borderRadius: BorderRadius.circular(16),
@@ -337,23 +344,49 @@ class _CalendarPageState extends State<CalendarPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconButton(
-              onPressed: () {
-                _pageController.previousPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-                setState(() {
-                  _currentMonth =
-                      DateTime(_currentMonth.year, _currentMonth.month - 1, 1);
-                });
-                _loadEventsForCurrentMonth(); // Load events for the new month
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.black54,
+
+                IconButton(
+                  onPressed: () {
+                    _pageController.previousPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                    setState(() {
+                      _currentMonth =
+                          DateTime(_currentMonth.year, _currentMonth.month - 1, 1);
+                    });
+                    _loadEventsForCurrentMonth(); // Load events for the new month
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.black54,
+                  ),
+                ),
+
+            /*
+            Container(
+              decoration: CustomDeco.backgroundContainer(),
+              child: InkWell(
+                onTap: (){
+                  _pageController.previousPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                  setState(() {
+                    _currentMonth =
+                        DateTime(_currentMonth.year, _currentMonth.month - 1, 1);
+                  });
+                  _loadEventsForCurrentMonth(); // Load events for the new month
+                },
+                  child: const Padding(
+                    padding:  EdgeInsets.all(4.0),
+                    child: Icon(Icons.arrow_back_ios_new, color: Colors.black54,),
+                  ),
               ),
+                //
+
             ),
+            */
             Text(
               DateFormat('MMMM yyyy').format(_currentMonth),
               style: const TextStyle(
@@ -361,6 +394,30 @@ class _CalendarPageState extends State<CalendarPage> {
                   fontWeight: FontWeight.w500,
                   fontFamily: 'Inter'),
             ),
+            /*
+            Container(
+              decoration: CustomDeco.backgroundContainer(),
+              child: InkWell(
+                onTap: (){
+                  _pageController.nextPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                  setState(() {
+                    _currentMonth =
+                        DateTime(_currentMonth.year, _currentMonth.month + 1, 1);
+                  });
+                  _loadEventsForCurrentMonth(); // Load events for the new month
+                },
+                child: const Padding(
+                  padding:  EdgeInsets.all(4.0),
+                  child: Icon(Icons.arrow_forward_ios, color: Colors.black54,),
+                ),
+              ),
+            ),
+            */
+            //
+
             IconButton(
               onPressed: () {
                 _pageController.nextPage(
@@ -375,6 +432,8 @@ class _CalendarPageState extends State<CalendarPage> {
               },
               icon: const Icon(Icons.arrow_forward, color: Colors.black54),
             ),
+
+
           ],
         ),
       ),
@@ -401,7 +460,9 @@ class _CalendarPageState extends State<CalendarPage> {
       // Print event names directly from the API response
       for (final data in eventsData) {
         final eventName = data['eventName'];
-        print('Event name from API: $eventName');
+        if (kDebugMode) {
+          print('Event name from API: $eventName');
+        }
       }
 
       setState(() {
@@ -411,8 +472,12 @@ class _CalendarPageState extends State<CalendarPage> {
               final eventDateStr = data['eventDate'];
               // print('API Response for 2024-02-10: ${jsonData['response']}');
               // print('Processed Events: $_events');
-              print('API Response: $jsonData');
-              print('Processed Events: $_events');
+              if (kDebugMode) {
+                print('API Response: $jsonData');
+              }
+              if (kDebugMode) {
+                print('Processed Events: $_events');
+              }
 
               if (eventName is String && eventDateStr is String) {
                 try {
@@ -422,8 +487,12 @@ class _CalendarPageState extends State<CalendarPage> {
                     eventDate: eventDateTime,
                   );
                 } catch (e) {
-                  print('Error parsing date: $e');
-                  print('Problematic data: $data');
+                  if (kDebugMode) {
+                    print('Error parsing date: $e');
+                  }
+                  if (kDebugMode) {
+                    print('Problematic data: $data');
+                  }
                 }
               }
 
@@ -433,7 +502,9 @@ class _CalendarPageState extends State<CalendarPage> {
             .toList();
       });
     } catch (e) {
-      print('Error: $e');
+      if (kDebugMode) {
+        print('Error: $e');
+      }
     } finally {
       setState(() {
         _isLoading = false;
@@ -453,7 +524,7 @@ class _CalendarPageState extends State<CalendarPage> {
           Expanded(
             child: PageView.builder(
               controller: _pageController,
-              physics: const BouncingScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: 12,
               onPageChanged: (int monthIndex) {
                 setState(() {
