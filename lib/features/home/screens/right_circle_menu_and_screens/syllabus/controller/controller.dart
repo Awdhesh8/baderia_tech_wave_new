@@ -32,10 +32,17 @@
 // final resultController = ResultController();
 // final resultDetailController = ResultDetailController();
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../../../../data/api/api_services.dart';
 import 'package:get/get.dart';
 class SyllabusController extends GetxController {
   Rx<Map<String, dynamic>?> apiResponse = Rx<Map<String, dynamic>?>(null);
+  RxString course = ''.obs;
+  RxString CurrentSem = ''.obs;
+
+  Rx<List<DropdownMenuItem<String>>> semDropDown = Rx<List<DropdownMenuItem<String>>>([]);
 
   @override
   void onInit() {
@@ -48,6 +55,18 @@ class SyllabusController extends GetxController {
       String result = await ApiService.getAllResults();
       Map<String, dynamic> jsonResponse = json.decode(result);
       apiResponse.value = jsonResponse['response'];
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      course.value = prefs.getString('course_name') ?? '';
+      CurrentSem.value = prefs.getString('stud_sem') ?? '';
+      int count;
+      if(course.value=='Mba'){
+        count = 4;
+      }else{
+        count = 6;
+      }
+      for(int k = 1; k <= count; k++) {
+        semDropDown.value.add(DropdownMenuItem(value: '$k',child: Text("Semester $k"),));
+      }
       //apiResponse.value
     } catch (error) {
       print("Error fetching results: $error");
@@ -139,7 +158,6 @@ class StudentController extends GetxController {
 
 
  */
-
 
 /// Correct code without API integration
 /*
@@ -679,6 +697,5 @@ void main() {
     print('-----------------------');
   });
 }
-
 
  */

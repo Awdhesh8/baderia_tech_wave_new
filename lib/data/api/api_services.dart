@@ -1099,7 +1099,7 @@ class ApiService {
     request.fields.addAll({
       'APIKEY': 'GNCS0225',
        'USER_ID': userId,
-      'USER_ID': '1044',
+      //'USER_ID': '1044',
     });
     // if (kDebugMode) {
     //   print('Current User ID => USER_ID ' ' 1044');
@@ -1135,8 +1135,8 @@ class ApiService {
         headers: APIConstants.headers,
         body: {
           'APIKEY': 'GNCS0225',
-          //'USER_ID': userId,
-         'USER_ID': '567'
+          'USER_ID': userId,
+         //'USER_ID': '567'
         },
       );
 

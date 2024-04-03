@@ -19,6 +19,8 @@ class UserController extends GetxController {
     prefs.setString('user_id', userData['user_id']);
     prefs.setString('user_type', userData['user_type']);
     prefs.setString('emp_id', userData['emp_id']);
+    prefs.setString('course_name', userData['course_name']);
+    prefs.setString('stud_sem', userData['stud_sem']);
   }
 
 

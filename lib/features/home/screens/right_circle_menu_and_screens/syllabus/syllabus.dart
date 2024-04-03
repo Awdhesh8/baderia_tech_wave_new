@@ -67,27 +67,41 @@ class Syllabus extends StatelessWidget {
               child: Divider(),
             ),
 
+            const SizedBox(
+              height: ESizes.spaceBtwItems,
+            ),
             /// Sem heading
             Padding(
-              padding: const EdgeInsets.only(right: 18),
+              padding: const EdgeInsets.only(left: 20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   RichText(
                     text: const TextSpan(
-                      text: "Semester's",
+                      text: "Select Semester's",
                       style: TextStyleClass.heading24,
-                      children: [
-                        TextSpan(
-                          text: "\nCheck your Syllabus",
-                          style: TextStyleClass.subtleTextStyle,
-                        ),
-                      ],
                     ),
                   ),
                 ],
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16,right: 16),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                decoration: const BoxDecoration(),
+                constraints: const BoxConstraints(
+                  minHeight: 50.0,
+                ),
+                child: _buildSemesterDropdown(),
+              ),
+            ),
+
+            const SizedBox(
+              height: ESizes.spaceBtwItems,
+            ),
+
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -99,8 +113,8 @@ class Syllabus extends StatelessWidget {
                     mainAxisExtent: 365,
                   ),
                   itemCount: 1,
-                  itemBuilder: (context, index) {
-                    var semester = apiResponse['semesters'][index];
+                  itemBuilder: (BuildContext context, int index) {
+                    var semester = '4';
                     return CustomBouncyAnimation(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -111,9 +125,9 @@ class Syllabus extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Semester ${semester["semester_number"] ?? "NA"}',
-                                  style: const TextStyle(
+                                 const Text(
+                                  'Subject:',
+                                  style: TextStyle(
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w500,
                                       fontFamily: 'Inter',
@@ -126,8 +140,7 @@ class Syllabus extends StatelessWidget {
                                       child: BouncyButton(
                                         label: 'Applied Mathematics – I',
                                         onPressed: () {
-                                          navigateToExamDetailsScreen(
-                                              semester, 'Final Exam');
+
                                         },
                                       ),
                                     ),
@@ -142,8 +155,7 @@ class Syllabus extends StatelessWidget {
                                       child: BouncyButton(
                                         label: 'Applied Physics – I',
                                         onPressed: () {
-                                          navigateToExamDetailsScreen(
-                                              semester, 'Mid-Sem   ');
+
                                         },
                                       ),
                                     ),
@@ -158,8 +170,7 @@ class Syllabus extends StatelessWidget {
                                       child: BouncyButton(
                                         label: 'Applied Chemistry – I',
                                         onPressed: () {
-                                          navigateToExamDetailsScreen(
-                                              semester, 'Mid-Sem   ');
+
                                         },
                                       ),
                                     ),
@@ -174,8 +185,7 @@ class Syllabus extends StatelessWidget {
                                       child: BouncyButton(
                                         label: 'Manufacturing Process ',
                                         onPressed: () {
-                                          navigateToExamDetailsScreen(
-                                              semester, 'Mid-Sem   ');
+
                                         },
                                       ),
                                     ),
@@ -190,8 +200,7 @@ class Syllabus extends StatelessWidget {
                                       child: BouncyButton(
                                         label: 'Introduction to Computers and Auto CAD',
                                         onPressed: () {
-                                          navigateToExamDetailsScreen(
-                                              semester, 'Mid-Sem   ');
+
                                         },
                                       ),
                                     ),
@@ -206,8 +215,7 @@ class Syllabus extends StatelessWidget {
                                       child: BouncyButton(
                                         label: 'Communication Skills – I',
                                         onPressed: () {
-                                          navigateToExamDetailsScreen(
-                                              semester, 'Mid-Sem   ');
+
                                         },
                                       ),
                                     ),
@@ -215,6 +223,19 @@ class Syllabus extends StatelessWidget {
                                 ),
                               ],
                             ),
+
+                            /*
+                            child: SingleChildScrollView(
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  color: EColors.backgroundColor,
+                                ),
+                                child: VtletterHistory(),
+                              ),
+                            ),
+                            */
+
+
                           ),
                         ),
                       ),
@@ -233,6 +254,42 @@ class Syllabus extends StatelessWidget {
       Map<String, dynamic> semester, String examType) {
     Get.to(() => ExamDetailsScreen(semester, examType));
   }
+
+
+  Widget _buildSemesterDropdown() {
+
+    return DropdownButtonFormField<String>(
+      isDense: true,
+      value: resultController.CurrentSem.value,
+      decoration: const InputDecoration(
+        labelStyle: TextStyle(color: EColors.textColorPrimary1),
+        //errorText:
+        //controller.subjectError.value ? 'Select VT Letter Subject' : null,
+      ),
+      hint: const Text("Select Semester's"),
+      onChanged: (String? newValue) async {
+        // if (newValue != null) {
+        //   controller.subjectController.value =
+        //       vtLetterSubject.firstWhere((group) => group.id == newValue);
+        //   String selectedSubject = controller.subjectController.value?.id ?? '';
+        //   controller.vtSubjectId = selectedSubject.obs;
+        //   await controller
+        //       .getCompany(); // Wait for the data fetching process to complete
+        //   _showMultiSelect(); // Show the bottom sheet after the data is loaded
+        // }
+      },
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please select a VT Letter Subject';
+        }
+        return null;
+      },
+
+      items: resultController.semDropDown.value,
+    );
+  }
+
+
 }
 
 class ShimmerLoading extends StatelessWidget {
@@ -245,24 +302,24 @@ class ShimmerLoading extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            /*
+
+            const SizedBox(height: 60.0),
+
             Shimmer.fromColors(
               baseColor: Colors.grey[300]!,
               highlightColor: Colors.grey[100]!,
               child: Container(
                 width: double.infinity,
-                height: 200,
+                height: 55,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
             ),
-            SizedBox(
-              height: 100,
-            ),
+            const SizedBox(height: 15.0),
 
-             */
+
             GridView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
