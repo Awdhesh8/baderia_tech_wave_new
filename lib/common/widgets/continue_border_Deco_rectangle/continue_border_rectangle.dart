@@ -142,7 +142,37 @@ class CustomDeco {
     );
   }
 
- /// Neomorphic container
+  ///
+  static ShapeDecoration decoRectangle7() {
+    return ShapeDecoration(
+      shape: ContinuousRectangleBorder(
+        borderRadius: BorderRadius.circular(70.0),
+      ),
+      //color: Colors.transparent,
+      color: Colors.white,
+      // color: Colors.red.shade50,
+      //gradient: EColors.linerGradient1,
+      //   (
+      //   colors: [Colors.red.shade100, Colors.white], // Set your gradient colors
+      //   begin: Alignment.topLeft,
+      //   transform: const GradientRotation(1),
+      //   tileMode: TileMode.repeated,
+      //   end: Alignment.bottomRight,
+      // ),
+      // color: Colors.red.shade50,
+      shadows: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.1),
+          spreadRadius: 1,
+          blurRadius: 4,
+          offset: const Offset(0, 0),
+        ),
+      ],
+    );
+  }
+
+
+  /// Neomorphic container
   static BoxDecoration neoDecoRectangle() {
     return BoxDecoration(
       color: EColors.backgroundColor,
