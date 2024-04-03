@@ -34,7 +34,7 @@
 import 'dart:convert';
 import '../../../../../../data/api/api_services.dart';
 import 'package:get/get.dart';
-class ResultController extends GetxController {
+class SyllabusController extends GetxController {
   Rx<Map<String, dynamic>?> apiResponse = Rx<Map<String, dynamic>?>(null);
 
   @override
