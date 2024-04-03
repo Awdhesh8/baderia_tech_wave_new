@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -98,12 +97,6 @@ class VTLetterForm extends StatelessWidget {
                                   },
                                   child: const Text('Select more ?',
                                       style: TextStyleClass.buttonStyle1)),
-                              // Text('Tap here to select more'),
-                              // IconButton(
-                              //     onPressed: () {
-                              //       _showMultiSelect();
-                              //     },
-                              //     icon: const Icon(Iconsax.folder_open, size: 15,)),
                             ],
                           ),
                         ],
@@ -320,6 +313,7 @@ class VTLetterForm extends StatelessWidget {
         ),
         child: MultiSelectBottomSheet(
           checkColor: EColors.lightContainer,
+          selectedColor: EColors.textColorPrimary1,
           cancelText: const Text('Cancel', style: TextStyle(fontFamily: 'Inter',color: Colors.redAccent),),
           title:
           Padding(
@@ -336,7 +330,7 @@ class VTLetterForm extends StatelessWidget {
                 ),
                 RichText(
                   text: const TextSpan(
-                    text: ' (Drag to select more)',
+                    text: ' (Select more? then Drag Up)',
                     style: TextStyleClass.labelText1,
                   ),
                 ),
@@ -367,6 +361,26 @@ class VTLetterForm extends StatelessWidget {
       exitBottomSheetDuration: const Duration(milliseconds: 500),
     );
   }
+
+
+}
+
+class VtLetterSubject {
+  final String id;
+  final String name;
+
+  VtLetterSubject({required this.id, required this.name});
+
+  factory VtLetterSubject.fromJson(Map<String, dynamic> json) {
+    return VtLetterSubject(
+      id: json['vtsubj_id'] ?? '',
+      name: json['vtsubj_name'] ?? '',
+    );
+  }
+}
+
+
+
 
 /*
   /// Old Bottom sheet code
@@ -477,7 +491,7 @@ class VTLetterForm extends StatelessWidget {
 
    */
 
-  /*
+/*
   void _showMultiSelect() async {
     Get.bottomSheet(
       enterBottomSheetDuration: const Duration(milliseconds: 100),ignoreSafeArea: true,
@@ -533,22 +547,6 @@ class VTLetterForm extends StatelessWidget {
 
 
    */
-
-}
-
-class VtLetterSubject {
-  final String id;
-  final String name;
-
-  VtLetterSubject({required this.id, required this.name});
-
-  factory VtLetterSubject.fromJson(Map<String, dynamic> json) {
-    return VtLetterSubject(
-      id: json['vtsubj_id'] ?? '',
-      name: json['vtsubj_name'] ?? '',
-    );
-  }
-}
 
 /// Edit By Alok
 /*
