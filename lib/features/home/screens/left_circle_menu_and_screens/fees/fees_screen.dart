@@ -54,6 +54,7 @@ class FeesController extends GetxController {
     }
   }
 }
+
 class FeesScreen extends StatelessWidget {
   final FeesController feesController = Get.put(FeesController());
 
@@ -79,7 +80,7 @@ class FeesScreen extends StatelessWidget {
         child: Column(
           children: [
             Obx(
-                  () {
+              () {
                 if (feesController.profileData.isEmpty ||
                     feesController.data.isEmpty ||
                     feesController.summary.isEmpty) {
@@ -89,7 +90,7 @@ class FeesScreen extends StatelessWidget {
                     child: Column(
                       children: List.generate(
                         6,
-                            (index) => ShimmerItem(),
+                        (index) => ShimmerItem(),
                       ),
                     ),
                   );
@@ -314,10 +315,10 @@ class SemesterDetailsCard extends StatelessWidget {
     final darkMode = EHelperFunctions.isDarkMode(context);
     return DownloadButton(
       onPressed: () {
-        if (data["viewmore"] is List &&
-            (data["viewmore"] as List).isNotEmpty) {
+        if (data["viewmore"] is List && (data["viewmore"] as List).isNotEmpty) {
           Get.to(
-                () => ViewMoreScreen(data["viewmore"], data['sem'], data['commit'], data['paid'],data['balance']),
+            () => ViewMoreScreen(data["viewmore"], data['sem'], data['commit'],
+                data['paid'], data['balance']),
             transition: Transition.cupertino,
             duration: const Duration(
                 milliseconds: 500), // Adjust the duration as needed
@@ -325,11 +326,16 @@ class SemesterDetailsCard extends StatelessWidget {
           );
         } else if (data["viewmore"] is List &&
             (data["viewmore"] as List).isEmpty) {
-          Get.snackbar('Empty Fees', 'Sem data is empty.');
+          Get.snackbar(
+            'Empty Fees',
+            'Semester ${data['sem']} data is empty.',
+            icon: const Icon(Icons.library_books_outlined),
+          );
         } else if (data["viewmore"] is Map &&
             (data["viewmore"] as Map).isNotEmpty) {
           Get.to(
-                () => ViewMoreScreen(data["viewmore"], data['sem'], data['commit'], data['paid'],data['balance']),
+            () => ViewMoreScreen(data["viewmore"], data['sem'], data['commit'],
+                data['paid'], data['balance']),
             transition: Transition.cupertino,
             duration: const Duration(
                 milliseconds: 500), // Adjust the duration as needed
@@ -592,4 +598,3 @@ class ShimmerItem extends StatelessWidget {
     );
   }
 }
-

@@ -92,7 +92,7 @@ class EditProfile extends StatelessWidget {
             _buildTextField('Email', profileController.email.value, (value) {
               profileController.email.value = value;
             }),
-
+            const SizedBox(height: 16),
             /// Blood Groups Dropdown--->>>
             /// Blood Groups Dropdown--->>>
             FutureBuilder<List<BloodGroup>>(
@@ -119,7 +119,7 @@ class EditProfile extends StatelessWidget {
                 }
               },
             ),
-
+            const SizedBox(height: 16),
             // FutureBuilder<List<String>>(
             //   future: ApiService.fetchBloodGroups(), // Fetch blood groups
             //   builder: (context, snapshot) {

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-class RiveAnimationScreen extends StatefulWidget {
+class RiveAnimationWidget extends StatefulWidget {
+  const RiveAnimationWidget({Key? key}) : super(key: key);
+
   @override
-  _RiveAnimationScreenState createState() => _RiveAnimationScreenState();
+  _RiveAnimationWidgetState createState() => _RiveAnimationWidgetState();
 }
 
-class _RiveAnimationScreenState extends State<RiveAnimationScreen> {
+class _RiveAnimationWidgetState extends State<RiveAnimationWidget> {
   late RiveAnimationController _riveController;
 
   @override
@@ -17,21 +19,16 @@ class _RiveAnimationScreenState extends State<RiveAnimationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
-        child: RiveAnimation.asset(
-          "assets/RiveAssets/help! (2).riv",
-          fit: BoxFit.cover,
-          animations: const ['Motion'],
-          stateMachines: const ['Motion'],
-          controllers: [_riveController],
-        ),
-      ),
+    return RiveAnimation.asset(
+      "assets/RiveAssets/help! (2).riv",
+      fit: BoxFit.cover,
+      animations: const ['Motion'],
+      stateMachines: const ['Motion'],
+      controllers: [_riveController],
     );
   }
 }
+
 
 
 

@@ -14,6 +14,7 @@ import '../../../../../../utils/constants/sizes.dart';
 import '../controller/form_controller.dart';
 import '../functions/form_functions.dart';
 
+
 class VTLetterForm extends StatelessWidget {
   /// Instance
   final controller = Get.put(VTLetterFormController());
@@ -95,7 +96,7 @@ class VTLetterForm extends StatelessWidget {
                                   onPressed: () {
                                     _showMultiSelect();
                                   },
-                                  child: const Text('Select more ?',
+                                  child: const Text('More ?',
                                       style: TextStyleClass.buttonStyle1)),
                             ],
                           ),
@@ -113,7 +114,7 @@ class VTLetterForm extends StatelessWidget {
               /// From Date
               Obx(
                 () => AnimatedContainer(
-                  width: 165,
+                  width: 156,
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
                   decoration: const BoxDecoration(),
@@ -146,14 +147,14 @@ class VTLetterForm extends StatelessWidget {
                   ),
                 ),
               ),
-
+               // SizedBox(width: ESizes.xs,),
               /// To Date
               Obx(() => InkWell(
                     onTap: () {
                       // _selectDates(context, false, controller.toController);
                     },
                     child: AnimatedContainer(
-                      width: 165,
+                      width: 156,
                       duration: const Duration(milliseconds: 300),
                       curve: Curves.easeInOut,
                       decoration: const BoxDecoration(),
@@ -196,9 +197,7 @@ class VTLetterForm extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(
-            height: ESizes.spaceBtwItems,
-          ),
+          const SizedBox(height: ESizes.spaceBtwItems,),
 
           /// Calculate the Days form the From date and To date & show in this text-field
           Obx(
