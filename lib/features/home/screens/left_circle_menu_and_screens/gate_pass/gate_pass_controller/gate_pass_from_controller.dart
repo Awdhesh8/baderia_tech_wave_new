@@ -10,7 +10,8 @@ class GatePassFormController extends GetxController {
   Rx<GatePassReason?> reasonController = Rx<GatePassReason?>(null);
   RxString goWithController = ''.obs;
   RxString remarkController = ''.obs;
-
+  // RxBool isDropdownExpanded = false.obs;
+  bool isDropdownExpanded = false;
   RxBool reasonError = false.obs;
   RxBool toError = false.obs;
   RxBool fromError = false.obs;

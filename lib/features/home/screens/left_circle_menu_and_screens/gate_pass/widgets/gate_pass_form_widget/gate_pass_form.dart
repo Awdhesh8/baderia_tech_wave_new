@@ -68,7 +68,7 @@ class GatePassForm extends StatelessWidget {
                                 context, false, controller.fromTimeController);
                           },
                         ),
-                        labelText: 'From Time',
+                        labelText: 'From',
                         labelStyle: const TextStyle(
                           color: Colors.black54,
                           fontSize: 13,
@@ -116,7 +116,7 @@ class GatePassForm extends StatelessWidget {
                                 context, false, controller.toTimeController);
                           },
                         ),
-                        labelText: 'To Time',
+                        labelText: 'To',
                         labelStyle: const TextStyle(
                           color: Colors.black54,
                           fontSize: 13,
@@ -189,12 +189,12 @@ class GatePassForm extends StatelessWidget {
 
           ///Gate Pass Reasons
           //Obx(() =>
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
+          Container(
+            // duration: const Duration(milliseconds: 300),
+            // curve: Curves.easeInOut,
             decoration: const BoxDecoration(),
             constraints: const BoxConstraints(
-              minHeight: 50.0,
+              minHeight: 55.0,
             ),
             child: FutureBuilder<List<GatePassReason>>(
               future:
@@ -289,7 +289,7 @@ class GatePassForm extends StatelessWidget {
                 decoration: InputDecoration(
                   isDense: true,
                    suffixIcon: const Icon(Iconsax.document_text_1),
-                  labelText: 'Gate Pass Remark',
+                  labelText: 'Remark',
                   labelStyle: const TextStyle(
                     color: Colors.black54,
                     fontSize: 13,
@@ -381,6 +381,54 @@ class GatePassForm extends StatelessWidget {
     String initialValue = controller.reasonController.value?.id ?? '';
 
     if (initialValue.isEmpty) {
+      initialValue = 'Select Reasons'; // Set default prompt
+    }
+
+    return DropdownButtonFormField<String>(
+      isDense: true,
+      value: initialValue, // Set initial value here
+      decoration: InputDecoration(
+        //labelText: 'Gate Pass Reasons',
+        labelStyle: const TextStyle(color: EColors.textColorPrimary1),
+        errorText: controller.reasonError.value
+            ? 'Please Reason'
+            : '',
+        // : gatePassReasons.firstWhere((group) => group.id == null,
+      ),
+      onChanged: (String? newValue) {
+        controller.reasonController.value =
+            gatePassReasons.firstWhere((group) => group.id == newValue);
+      },
+      // validator:(reasonController) {
+      //   if(reasonController == null || reasonController.isEmpty) {
+      //     return "Please Select any Reasons";
+      //   }else {
+      //     return null;
+      //   }
+      // },
+      items: [
+        const DropdownMenuItem<String>(
+          value: 'Select Reasons',
+          child: Text('Select Reasons',
+              style: TextStyle(fontSize: 12, color: Colors.black54)),
+        ),
+        ...gatePassReasons
+            .map<DropdownMenuItem<String>>((GatePassReason group) {
+          return DropdownMenuItem<String>(
+            value: group.id,
+            child: Text(group.name, style: const TextStyle(fontSize: 12)),
+          );
+        }).toList(),
+      ],
+    );
+  }
+
+
+/*
+  Widget _buildGatePassReasonDropdown(List<GatePassReason> gatePassReasons) {
+    String initialValue = controller.reasonController.value?.id ?? '';
+
+    if (initialValue.isEmpty) {
       initialValue = 'Select Your Gate Pass Reasons'; // Set default prompt
     }
 
@@ -422,6 +470,8 @@ class GatePassForm extends StatelessWidget {
       ],
     );
   }
+*/
+
 
 /*
   void _showReasonBottomSheet(BuildContext context) {
