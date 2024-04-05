@@ -181,6 +181,7 @@
 
 import 'dart:math';
 import 'package:baderia_tech_wave/features/home/screens/right_circle_menu_and_screens/syllabus/syllabus.dart';
+import 'package:baderia_tech_wave/features/home/screens/right_circle_menu_and_screens/tranining/training.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -383,6 +384,10 @@ class _RightSideCircularScrollingBoxesState
       case 16:
         screen = () => VTLetter();
         break;
+        case 9:
+      case 18:
+        screen = () => SyllabusScreen();
+        break;
     // Add cases for other indices/screens as needed
       default:
         _showSnackbar("It is in under Development");
@@ -422,7 +427,7 @@ class _RightSideCircularScrollingBoxesState
 
   bool isUnderDevelopmentRightMenus(int index) {
     // Add the indices of screens that are under development
-    List<int> underDevelopmentIndices = [0, 1, 2 , 4, 5, 8, 9, 10, 11, 12, 14, 15, 18];
+    List<int> underDevelopmentIndices = [0, 1, 2 , 4, 5, 8, 10, 11, 12, 14, 15,];
 
     return underDevelopmentIndices.contains(index);
   }
