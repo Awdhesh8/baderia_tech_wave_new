@@ -18,6 +18,15 @@ class Syllabus extends StatelessWidget {
   final CustomAnimationController animationController =
   Get.put(CustomAnimationController());
 
+  List<String> items = [
+    'Applied Mathematics – I',
+    'Applied Physics – I',
+    'Applied Chemistry – I',
+    'Manufacturing Process',
+    'Introduction to Computers and Auto CAD',
+    'Communication Skills – I',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,148 +107,22 @@ class Syllabus extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(
-              height: ESizes.spaceBtwItems,
-            ),
-
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(18.0),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    crossAxisSpacing: 4.0,
-                    mainAxisSpacing: 8.0,
-                    mainAxisExtent: 365,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 15.0,
+                    mainAxisSpacing: 2.0,
+                    mainAxisExtent: 165,
+                    //childAspectRatio: 1
                   ),
-                  itemCount: 1,
+                  //itemCount: 1,
+                  itemCount: items.length,
                   itemBuilder: (BuildContext context, int index) {
-                    var semester = '4';
-                    return CustomBouncyAnimation(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Container(
-                          decoration: CustomDeco.decoRectangle7(),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                 const Text(
-                                  'Subject:',
-                                  style: TextStyle(
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: 'Inter',
-                                      color: EColors.black),
-                                ),
-                                const SizedBox(height: 15.0),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: BouncyButton(
-                                        label: 'Applied Mathematics – I',
-                                        onPressed: () {
+                    return buildBouncyButton(items[index]);
 
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: ESizes.spaceBtwItems,
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: BouncyButton(
-                                        label: 'Applied Physics – I',
-                                        onPressed: () {
-
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: ESizes.spaceBtwItems,
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: BouncyButton(
-                                        label: 'Applied Chemistry – I',
-                                        onPressed: () {
-
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: ESizes.spaceBtwItems,
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: BouncyButton(
-                                        label: 'Manufacturing Process ',
-                                        onPressed: () {
-
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: ESizes.spaceBtwItems,
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: BouncyButton(
-                                        label: 'Introduction to Computers and Auto CAD',
-                                        onPressed: () {
-
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: ESizes.spaceBtwItems,
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: BouncyButton(
-                                        label: 'Communication Skills – I',
-                                        onPressed: () {
-
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-
-                            /*
-                            child: SingleChildScrollView(
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  color: EColors.backgroundColor,
-                                ),
-                                child: VtletterHistory(),
-                              ),
-                            ),
-                            */
-
-
-                          ),
-                        ),
-                      ),
-                    );
                   },
                 ),
               ),
@@ -253,6 +136,67 @@ class Syllabus extends StatelessWidget {
   void navigateToExamDetailsScreen(
       Map<String, dynamic> semester, String examType) {
     Get.to(() => ExamDetailsScreen(semester, examType));
+  }
+
+  Widget buildBouncyButton(String label) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 500), // Adjust the duration as needed
+        curve: Curves.easeInOut, // Adjust the curve as needed
+        decoration: BoxDecoration(
+          // borderRadius: const BorderRadius.only(
+          //   topRight: Radius.circular(26.0),
+          //   bottomLeft: Radius.circular(26.0),
+          // ),
+          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 3,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
+        child: InkWell(
+          onTap: () {
+            // Add your onPressed logic here
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.bookOpenReader,
+                      size: 48.0,
+                      color: Colors.red.shade50,
+                    ),
+                    Icon(
+                      FontAwesomeIcons.shareFromSquare,
+                      size: 28.0,
+                      color: Colors.red.shade100,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 15, // Adjusted space between the icon and the text
+                ),
+                Text(
+                  label,
+                  style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
 
