@@ -41,9 +41,9 @@ class Syllabus extends StatelessWidget {
         ),
       ),
       body: Obx(() {
-        if (resultController.apiResponse.value == null) {
-          return ShimmerLoading();
-        }
+        // if (resultController.apiResponse.value == null) {
+        //   return ShimmerLoading();
+        // }
 
         var apiResponse = resultController.apiResponse.value!;
         // print(apiResponse);
@@ -223,6 +223,8 @@ class Syllabus extends StatelessWidget {
         // }
       },
       validator: (value) {
+        return null;
+
         // if (value == null || value.isEmpty) {
         //   return 'Please select a VT Letter Subject';
         // }
