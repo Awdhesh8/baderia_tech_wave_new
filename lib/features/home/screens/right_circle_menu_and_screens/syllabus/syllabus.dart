@@ -175,12 +175,12 @@ class Syllabus extends StatelessWidget {
                     Icon(
                       FontAwesomeIcons.bookOpenReader,
                       size: 48.0,
-                      color: Colors.red.shade50,
+                      color: Colors.red.shade100,
                     ),
                     Icon(
                       FontAwesomeIcons.shareFromSquare,
                       size: 28.0,
-                      color: Colors.red.shade100,
+                      color: Colors.red.shade200,
                     ),
                   ],
                 ),
@@ -223,10 +223,10 @@ class Syllabus extends StatelessWidget {
         // }
       },
       validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please select a VT Letter Subject';
-        }
-        return null;
+        // if (value == null || value.isEmpty) {
+        //   return 'Please select a VT Letter Subject';
+        // }
+        // return null;
       },
 
       items: resultController.semDropDown.value,
