@@ -64,6 +64,7 @@ class SyllabusController extends GetxController {
       }else{
         count = 6;
       }
+      semDropDown.value.clear();
       for(int k = 1; k <= count; k++) {
         semDropDown.value.add(DropdownMenuItem(value: '$k',child: Text("Semester $k"),));
       }
