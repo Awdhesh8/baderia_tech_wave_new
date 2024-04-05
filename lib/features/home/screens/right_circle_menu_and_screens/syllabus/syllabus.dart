@@ -41,9 +41,9 @@ class Syllabus extends StatelessWidget {
         ),
       ),
       body: Obx(() {
-        // if (resultController.apiResponse.value == null) {
-        //   return ShimmerLoading();
-        // }
+        if (resultController.apiResponse.value == null) {
+          return ShimmerLoading();
+        }
 
         var apiResponse = resultController.apiResponse.value!;
         // print(apiResponse);
@@ -113,16 +113,15 @@ class Syllabus extends StatelessWidget {
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 15.0,
+                    crossAxisSpacing: 16.0,
                     mainAxisSpacing: 2.0,
-                    mainAxisExtent: 165,
+                    mainAxisExtent: 148,
                     //childAspectRatio: 1
                   ),
                   //itemCount: 1,
                   itemCount: items.length,
                   itemBuilder: (BuildContext context, int index) {
                     return buildBouncyButton(items[index]);
-
                   },
                 ),
               ),
@@ -145,11 +144,11 @@ class Syllabus extends StatelessWidget {
         duration: const Duration(milliseconds: 500), // Adjust the duration as needed
         curve: Curves.easeInOut, // Adjust the curve as needed
         decoration: BoxDecoration(
-          // borderRadius: const BorderRadius.only(
-          //   topRight: Radius.circular(26.0),
-          //   bottomLeft: Radius.circular(26.0),
-          // ),
-          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(22.0),
+            bottomLeft: Radius.circular(22.0),
+          ),
+          //borderRadius: const BorderRadius.all(Radius.circular(12.0)),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
@@ -162,7 +161,9 @@ class Syllabus extends StatelessWidget {
         ),
         child: InkWell(
           onTap: () {
-            // Add your onPressed logic here
+            var semester =  {"2":{2:3}};
+            navigateToExamDetailsScreen(
+                semester , 'Final Exam');
           },
           child: Padding(
             padding: const EdgeInsets.all(12.0),
@@ -189,7 +190,7 @@ class Syllabus extends StatelessWidget {
                 ),
                 Text(
                   label,
-                  style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -235,7 +236,11 @@ class Syllabus extends StatelessWidget {
     );
   }
 
+}
 
+void navigateToExamDetailsScreen(
+    Map<String, dynamic> semester, String examType) {
+  Get.to(() => ExamDetailsScreen(semester, examType));
 }
 
 class ShimmerLoading extends StatelessWidget {
