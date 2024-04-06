@@ -175,6 +175,7 @@ class Syllabus extends StatelessWidget {
                     Icon(
                       FontAwesomeIcons.bookOpenReader,
                       size: 48.0,
+                      // color: Colors.grey.shade500,
                       color: Colors.red.shade100,
                     ),
                     Icon(
@@ -187,10 +188,21 @@ class Syllabus extends StatelessWidget {
                 const SizedBox(
                   height: 15, // Adjusted space between the icon and the text
                 ),
-                Text(
-                  label,
-                  style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
+
+                Flexible(
+                  child: SizedBox(
+                    child: Text(
+                      label,
+                      style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w500, fontFamily: 'Inter', overflow: TextOverflow.fade, ),
+                    ),
+                  ),
                 ),
+
+                // Text(
+                //   label,
+                //   style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w500, fontFamily: 'Inter', overflow: TextOverflow.ellipsis, ),
+                // ),
+
               ],
             ),
           ),
@@ -199,7 +211,33 @@ class Syllabus extends StatelessWidget {
     );
   }
 
+  Widget _buildSemesterDropdown() {
+    return DropdownButtonFormField<String>(
+      isDense: true,
+      value: resultController.currentSem.value,
+      decoration: const InputDecoration(
+        labelStyle: TextStyle(color: EColors.textColorPrimary1),
+      ),
+      hint: const Text("Select Semester's"),
+      onChanged: (String? newValue) async {
+        print(newValue);
+        resultController.fetchSubject(newValue!);
+      },
+      items: resultController.semDropDown.value.map((item) {
+        final Key key = UniqueKey();
+        return DropdownMenuItem<String>(
+          key: key,
+          value: item.value,
+          child: Text(
+            item.child.toString(), // Cast child to Text widget
+          ),
+        );
+      }).toList(),
+    );
+  }
 
+
+/*
   Widget _buildSemesterDropdown() {
 
     return DropdownButtonFormField<String>(
@@ -236,6 +274,8 @@ class Syllabus extends StatelessWidget {
       items: resultController.semDropDown.value,
     );
   }
+
+ */
 
 }
 
