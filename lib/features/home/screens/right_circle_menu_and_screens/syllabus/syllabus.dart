@@ -223,22 +223,22 @@ class Syllabus extends StatelessWidget {
         print(newValue);
         resultController.fetchSubject(newValue!);
       },
-      items: resultController.semDropDown.value.map((item) {
-        final Key key = UniqueKey();
-        return DropdownMenuItem<String>(
-          key: key,
-          value: item.value,
-          child: Text(
-            item.child.toString(), // Cast child to Text widget
-          ),
-        );
-      }).toList(),
+      items: resultController.semDropDown.value
+
+
+
+
+
+
+
+
+
     );
   }
 
 
-/*
-  Widget _buildSemesterDropdown() {
+
+  Widget _buildSemesterDropdown1() {
 
     return DropdownButtonFormField<String>(
       isDense: true,
@@ -275,7 +275,7 @@ class Syllabus extends StatelessWidget {
     );
   }
 
- */
+
 
 }
 
