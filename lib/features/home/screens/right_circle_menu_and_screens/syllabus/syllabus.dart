@@ -41,12 +41,10 @@ class Syllabus extends StatelessWidget {
         ),
       ),
       body: Obx(() {
-        if (resultController.apiResponse.value == null) {
+        if (resultController.subjectList.value == null) {
           return ShimmerLoading();
         }
 
-        var apiResponse = resultController.apiResponse.value!;
-        // print(apiResponse);
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

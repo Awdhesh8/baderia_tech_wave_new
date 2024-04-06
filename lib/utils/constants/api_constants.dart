@@ -26,6 +26,7 @@ class APIConstants {
   static const String applyVtLetter = 'apply_vtletter';
   static const String getActivity = 'get_activity';
   static const String gatePassHistory = 'gatepass_history';
+  static const String getsubjectlist = 'getsubjectlist';
 
   // Add more endpoints as needed
 

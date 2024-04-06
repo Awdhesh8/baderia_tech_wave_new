@@ -1,36 +1,4 @@
-// import '../../../../../../data/api/api_services.dart';
-// import '../model/model.dart';
-// import 'package:get/get.dart';
-//
-// class ResultController extends GetxController {
-//   var isLoading = true.obs;
-//   var apiResponse = ApiResponse(semesters: [], overallStatus: [], response: null, message: '', status: '').obs;
-//
-//   @override
-//   void onInit() {
-//     fetchData();
-//     super.onInit();
-//   }
-//
-//   Future<void> fetchData() async {
-//     try {
-//       isLoading(true);
-//       var response = await ApiService.getAllResults();
-//       apiResponse(ApiResponse.fromJson(response));
-//     } catch (error) {
-//       print('Error fetching data: $error');
-//     } finally {
-//       isLoading(false);
-//     }
-//   }
-// }
-//
-// class ResultDetailController extends GetxController {
-//   // Controller for ResultDetailScreen if needed
-// }
-//
-// final resultController = ResultController();
-// final resultDetailController = ResultDetailController();
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../data/api/api_services.dart';
 import 'package:get/get.dart';
 class SyllabusController extends GetxController {
-  Rx<Map<String, dynamic>?> apiResponse = Rx<Map<String, dynamic>?>(null);
+  Rx<List<dynamic>?> subjectList = Rx<List<dynamic>?>(null);
   RxString course = ''.obs;
   RxString CurrentSem = ''.obs;
 
@@ -47,14 +15,16 @@ class SyllabusController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchResults();
+    fetchSubject();
   }
 
-  Future<void> fetchResults() async {
+  Future<void> fetchSubject() async {
     try {
-      String result = await ApiService.getAllResults();
+      String result = await ApiService.getAllSubjectList(CurrentSem.value);
       Map<String, dynamic> jsonResponse = json.decode(result);
-      apiResponse.value = jsonResponse['response'];
+
+      subjectList.value = jsonResponse['response'];
+      //print(apiResponse);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       course.value = prefs.getString('course_name') ?? '';
       CurrentSem.value = prefs.getString('stud_sem') ?? '';
