@@ -11,6 +11,7 @@ import '../../../../../common/widgets/continue_border_Deco_rectangle/continue_bo
 import 'package:baderia_tech_wave/features/home/screens/left_circle_menu_and_screens/result/sem_details.dart';
 import 'package:baderia_tech_wave/features/home/screens/left_circle_menu_and_screens/result/widget/animation.dart';
 import 'package:baderia_tech_wave/features/home/screens/left_circle_menu_and_screens/result/widget/animated_button.dart';
+import 'Widgets/syllabus_details.dart';
 import 'controller/controller.dart';
 
 class Syllabus extends StatelessWidget {
@@ -130,10 +131,6 @@ class Syllabus extends StatelessWidget {
     );
   }
 
-  void navigateToExamDetailsScreen(
-      Map<String, dynamic> semester, String examType) {
-    Get.to(() => ExamDetailsScreen(semester, examType));
-  }
 
   Widget buildBouncyButton(String subid,String label) {
     return Padding(
@@ -160,9 +157,7 @@ class Syllabus extends StatelessWidget {
         child: InkWell(
           onTap: () {
             print(subid);
-            // var semester =  {"2":{2:3}};
-            // navigateToExamDetailsScreen(
-            //     semester , 'Final Exam');
+            navigateToSyllabusDetailsScreen(subid,label);
           },
           child: Padding(
             padding: const EdgeInsets.all(12.0),
@@ -220,25 +215,14 @@ class Syllabus extends StatelessWidget {
       ),
       hint: const Text("Select Semester's"),
       onChanged: (String? newValue) async {
-        print(newValue);
+        //print(newValue);
         resultController.fetchSubject(newValue!);
       },
       items: resultController.semDropDown.value
-
-
-
-
-
-
-
-
-
     );
   }
-
-
-
-  Widget _buildSemesterDropdown1() {
+/*
+  Widget _buildSemesterDropdown_old() {
 
     return DropdownButtonFormField<String>(
       isDense: true,
@@ -274,14 +258,12 @@ class Syllabus extends StatelessWidget {
       items: resultController.semDropDown.value,
     );
   }
-
-
+ */
 
 }
 
-void navigateToExamDetailsScreen(
-    Map<String, dynamic> semester, String examType) {
-  Get.to(() => ExamDetailsScreen(semester, examType));
+void navigateToSyllabusDetailsScreen( String semester, String examType) {
+  Get.to(() => SyllabusDetailsScreen(semester, examType));
 }
 
 class ShimmerLoading extends StatelessWidget {
