@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../../data/api/api_services.dart';
 import 'package:get/get.dart';
+
 /*
 class SyllabusController extends GetxController {
   Rx<List<dynamic>?> subjectList = Rx<List<dynamic>?>(null);
