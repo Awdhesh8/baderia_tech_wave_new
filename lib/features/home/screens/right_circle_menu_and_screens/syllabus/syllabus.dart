@@ -6,11 +6,7 @@ import 'package:baderia_tech_wave/utils/constants/colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:baderia_tech_wave/utils/constants/teext_styles.dart';
 import 'package:baderia_tech_wave/common/widgets/appbar/appbar.dart';
-import '../../../../../common/widgets/stack_containers/stack_containers.dart';
-import '../../../../../common/widgets/continue_border_Deco_rectangle/continue_border_rectangle.dart';
-import 'package:baderia_tech_wave/features/home/screens/left_circle_menu_and_screens/result/sem_details.dart';
 import 'package:baderia_tech_wave/features/home/screens/left_circle_menu_and_screens/result/widget/animation.dart';
-import 'package:baderia_tech_wave/features/home/screens/left_circle_menu_and_screens/result/widget/animated_button.dart';
 import 'Widgets/subject_details.dart';
 import 'controller/controller.dart';
 
@@ -147,8 +143,7 @@ class Syllabus extends StatelessWidget {
         ),
         child: InkWell(
           onTap: () {
-            print(subid);
-            //print(syllabusController.selectedSem);
+            //print(subid);
             syllabusController.selectedTabIndex = 0.obs;
             navigateToSyllabusDetailsScreen(subid,label,syllabusController.selectedSem);
           },
@@ -211,47 +206,16 @@ class Syllabus extends StatelessWidget {
         //print(newValue);
         syllabusController.fetchSubject(newValue!);
       },
-      items: syllabusController.semDropDown.value
-    );
-  }
-/*
-  Widget _buildSemesterDropdown_old() {
-
-    return DropdownButtonFormField<String>(
-      isDense: true,
-      value: syllabusController.currentSem.value,
-      decoration: const InputDecoration(
-        labelStyle: TextStyle(color: EColors.textColorPrimary1),
-        //errorText:
-        //controller.subjectError.value ? 'Select VT Letter Subject' : null,
-      ),
-      hint: const Text("Select Semester's"),
-      onChanged: (String? newValue) async {
-        // if (newValue != null) {
-        //   controller.subjectController.value =
-        //       vtLetterSubject.firstWhere((group) => group.id == newValue);
-        //   String selectedSubject = controller.subjectController.value?.id ?? '';
-        //   controller.vtSubjectId = selectedSubject.obs;
-        //   await controller
-        //       .getCompany(); // Wait for the data fetching process to complete
-        //   _showMultiSelect(); // Show the bottom sheet after the data is loaded
-        // }
-        print(newValue);
-        syllabusController.fetchSubject(newValue!);
-      },
-      //validator: (value) {
+        //validator: (value) {
         //return null;
-
         // if (value == null || value.isEmpty) {
         //   return 'Please select a VT Letter Subject';
         // }
         // return null;
-      //},
-
-      items: syllabusController.semDropDown.value,
+        //},
+      items: syllabusController.semDropDown.value
     );
   }
- */
 
 }
 
@@ -284,19 +248,20 @@ class ShimmerLoading extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 15.0),
-
-
+            const SizedBox(height: 20.0),
             GridView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
                 childAspectRatio: 1,
+                crossAxisSpacing: 16.0,
+                mainAxisSpacing: 15.0,
+                mainAxisExtent: 148,
+
+
               ),
-              itemCount: 1,
+              itemCount: 6,
               itemBuilder: (BuildContext context, int index) {
                 return Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,

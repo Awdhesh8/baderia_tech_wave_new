@@ -1302,7 +1302,7 @@ class ApiService {
     }
   }
 
-  /// Result
+  /// SubjectList
   static Future<String> getAllSubjectList(String stud_sem) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var userId = prefs.getString('user_id') ?? '';
@@ -1318,11 +1318,8 @@ class ApiService {
       'USER_ID': userId,
       'stud_sem': stud_sem,
     });
-    // if (kDebugMode) {
-    //   print('Current User ID => USER_ID ' ' 1044');
-    // }
-    request.headers.addAll(headers);
 
+    request.headers.addAll(headers);
     try {
       http.StreamedResponse response = await request.send();
       if (kDebugMode) {
@@ -1338,7 +1335,7 @@ class ApiService {
     }
   }
 
-  ///Get VT Letter History
+  /// TopicList
   static Future<List<String>> fetchTopicList(String sub_id, String unit)async {
     final response = await http.post(
       Uri.parse(APIConstants.getFullUrl(APIConstants.getsyllabus)),

@@ -94,7 +94,8 @@ class SubjectDetailsScreen extends StatelessWidget {
                     child: Obx(() {
                       var selectedTabIndex =  syllabusController.selectedTabIndex.value;
                       var unit = '${selectedTabIndex+1}';
-                      return getContentForTab(subjectId , unit);
+                      //return getContentForTab(subjectId , unit);
+                      return TopicContent(subjectId , unit);
                     }),
                   ),
                 ],
@@ -108,16 +109,7 @@ class SubjectDetailsScreen extends StatelessWidget {
 
   Widget getContentForTab(
       String subjectId, String unit) {
-      return TheoreticalContent(subjectId,unit);
-
-    // switch (controller.selectedTabIndex.value) {
-    //   case 0:
-    //
-    //   case 1:
-    //     return TheoreticalContent(examData: subjectId);
-    //   default:
-    //     return Container();
-    // }
+      return TopicContent(subjectId,unit);
   }
 
   String _getTabText(int index) {
@@ -177,10 +169,10 @@ class TabItem extends StatelessWidget {
   }
 }
 
-class TheoreticalContent extends StatelessWidget {
+class TopicContent extends StatelessWidget {
   final String subjectId;
   final String unit;
-  TheoreticalContent(this.subjectId, this.unit);
+  TopicContent(this.subjectId, this.unit);
 
   @override
   Widget build(BuildContext context) {
