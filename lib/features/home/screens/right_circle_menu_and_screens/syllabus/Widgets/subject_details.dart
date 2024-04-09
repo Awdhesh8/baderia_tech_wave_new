@@ -32,6 +32,7 @@ class SubjectDetailsScreen extends StatelessWidget {
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
           // Vertical tabs
           Container(
             width: MediaQuery.of(context).size.width * 0.2,
@@ -195,7 +196,20 @@ class TopicContent extends StatelessWidget {
               itemCount: topics?.length,
               itemBuilder: (context, index) {
                 final topic = topics?[index];
-                return ListTile(
+                return Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(FontAwesomeIcons.certificate, color: EColors.grey, size: 18,),
+                      SizedBox(width: 5,),
+                      Flexible(child: Text(topic!)),
+                    ],
+                  ),
+                )
+                /*
+                  ListTile(
                   dense: true,
                   leading:Icon(
                     FontAwesomeIcons.fileLines,
@@ -205,7 +219,11 @@ class TopicContent extends StatelessWidget {
                   title: Text(topic!,
                     //style: TextStyle(height: -0.1),
                   ),
-                );
+                )
+
+                 */
+
+                ;
               },
             );
           }
