@@ -1,6 +1,6 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:baderia_tech_wave/common/widgets/appbar/appbar.dart';
 import 'package:baderia_tech_wave/utils/constants/colors.dart';
@@ -18,10 +18,7 @@ class SubjectDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SyllabusController());
 
-    String examData;
-    examData = subjectId;
     return Scaffold(
       backgroundColor: EColors.backgroundColor,
       appBar: GAppBar(
@@ -46,41 +43,14 @@ class SubjectDetailsScreen extends StatelessWidget {
                 bottomRight: Radius.circular(32),
               ),
             ),
-            /*
-            child: ListView.builder(
-              itemCount: 2,
-              itemBuilder: (context, index) {
-                return Obx(() {
-                  return GestureDetector(
-                    onTap: () {
-                      controller.changeTabIndex(index);
-                      // Add animation here
-                      Get.to(
-                            () => SubjectDetailsScreen(
-                          semester,
-                          examType,
-                        ),
-                        transition: Transition.rightToLeft,
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                    child: TabItem(
-                      text: index == 0 ? 'Theoretical' : 'Practical',
-                      isSelected: controller.selectedTabIndex.value == index,
-                    ),
-                  );
-                });
-              },
-            ),
-             */
+
             child: ListView.builder(
               itemCount: 5, // Changed itemCount to 5
               itemBuilder: (context, index) {
                 return Obx(() {
                   return GestureDetector(
                     onTap: () {
-                      controller.changeTabIndex(index);
+                      syllabusController.changeTabIndex(index);
                       // Add animation here
                       Get.to(
                             () => SubjectDetailsScreen(
@@ -95,16 +65,12 @@ class SubjectDetailsScreen extends StatelessWidget {
                     },
                     child: TabItem(
                       text: _getTabText(index), // Util function to get tab text
-                      isSelected: controller.selectedTabIndex.value == index,
+                      isSelected: syllabusController.selectedTabIndex.value == index,
                     ),
                   );
                 });
               },
             ),
-
-
-
-
           ),
           // Details section
           Expanded(
@@ -115,8 +81,6 @@ class SubjectDetailsScreen extends StatelessWidget {
                 children: [
                   Text(
                     '$subjectName',
-                    //'Semester: ${subjectId ?? "NA"}',
-                    // '${examType.toUpperCase()} DETAILS',
                     style: const TextStyle(
                       fontSize: 18.0,
                       fontFamily: 'Inter',
@@ -124,10 +88,12 @@ class SubjectDetailsScreen extends StatelessWidget {
                       color: EColors.textSecondaryTitle,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 5),
+                  Divider(),
                   Expanded(
                     child: Obx(() {
-                      String unit =  '${controller.selectedTabIndex.value+1}';
+                      var selectedTabIndex =  syllabusController.selectedTabIndex.value;
+                      var unit = '${selectedTabIndex+1}';
                       return getContentForTab(subjectId , unit);
                     }),
                   ),
@@ -238,7 +204,15 @@ class TheoreticalContent extends StatelessWidget {
               itemBuilder: (context, index) {
                 final topic = topics?[index];
                 return ListTile(
-                  title: Text(topic!),
+                  dense: true,
+                  leading:Icon(
+                    FontAwesomeIcons.fileLines,
+                    size: 22.0,
+                    color: Colors.grey.shade500,
+                  ),
+                  title: Text(topic!,
+                    //style: TextStyle(height: -0.1),
+                  ),
                 );
               },
             );

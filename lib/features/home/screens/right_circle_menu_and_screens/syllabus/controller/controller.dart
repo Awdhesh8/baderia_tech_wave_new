@@ -74,6 +74,7 @@ class SyllabusController extends GetxController {
     selectedTabIndex.value = index;
   }
 
+
   @override
   void onInit() async {
     super.onInit();

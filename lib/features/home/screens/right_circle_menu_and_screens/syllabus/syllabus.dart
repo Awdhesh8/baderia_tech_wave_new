@@ -149,6 +149,7 @@ class Syllabus extends StatelessWidget {
           onTap: () {
             print(subid);
             //print(syllabusController.selectedSem);
+            syllabusController.selectedTabIndex = 0.obs;
             navigateToSyllabusDetailsScreen(subid,label,syllabusController.selectedSem);
           },
           child: Padding(
