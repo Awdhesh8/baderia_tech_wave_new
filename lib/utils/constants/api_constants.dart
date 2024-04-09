@@ -27,6 +27,7 @@ class APIConstants {
   static const String getActivity = 'get_activity';
   static const String gatePassHistory = 'gatepass_history';
   static const String getsubjectlist = 'getsubjectlist';
+  static const String getsyllabus = 'getsyllabus';
 
   // Add more endpoints as needed
 

@@ -11,22 +11,13 @@ import '../../../../../common/widgets/continue_border_Deco_rectangle/continue_bo
 import 'package:baderia_tech_wave/features/home/screens/left_circle_menu_and_screens/result/sem_details.dart';
 import 'package:baderia_tech_wave/features/home/screens/left_circle_menu_and_screens/result/widget/animation.dart';
 import 'package:baderia_tech_wave/features/home/screens/left_circle_menu_and_screens/result/widget/animated_button.dart';
-import 'Widgets/syllabus_details.dart';
+import 'Widgets/subject_details.dart';
 import 'controller/controller.dart';
 
 class Syllabus extends StatelessWidget {
-  final SyllabusController resultController = Get.put(SyllabusController());
+  final SyllabusController syllabusController = Get.put(SyllabusController());
   final CustomAnimationController animationController =
   Get.put(CustomAnimationController());
-
-  List<String> items = [
-    'Applied Mathematics – I',
-    'Applied Physics – I',
-    'Applied Chemistry – I',
-    'Manufacturing Process',
-    'Introduction to Computers and Auto CAD',
-    'Communication Skills – I',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +33,7 @@ class Syllabus extends StatelessWidget {
         ),
       ),
       body: Obx(() {
-        if (resultController.subjectList.value == null) {
+        if (syllabusController.subjectList.value == null) {
           return ShimmerLoading();
         }
 
@@ -118,9 +109,9 @@ class Syllabus extends StatelessWidget {
                     //childAspectRatio: 1
                   ),
                   //itemCount: 1,
-                  itemCount: resultController.subject.length,
+                  itemCount: syllabusController.subject.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return buildBouncyButton(resultController.subject[index].id.toString(),resultController.subject[index].name.toString());
+                    return buildBouncyButton(syllabusController.subject[index].id.toString(),syllabusController.subject[index].name.toString());
                   },
                 ),
               ),
@@ -139,11 +130,11 @@ class Syllabus extends StatelessWidget {
         duration: const Duration(milliseconds: 500), // Adjust the duration as needed
         curve: Curves.easeInOut, // Adjust the curve as needed
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            topRight: Radius.circular(22.0),
-            bottomLeft: Radius.circular(22.0),
-          ),
-          //borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+          // borderRadius: const BorderRadius.only(
+          //   topRight: Radius.circular(22.0),
+          //   bottomLeft: Radius.circular(22.0),
+          // ),
+          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
@@ -157,7 +148,8 @@ class Syllabus extends StatelessWidget {
         child: InkWell(
           onTap: () {
             print(subid);
-            navigateToSyllabusDetailsScreen(subid,label);
+            //print(syllabusController.selectedSem);
+            navigateToSyllabusDetailsScreen(subid,label,syllabusController.selectedSem);
           },
           child: Padding(
             padding: const EdgeInsets.all(12.0),
@@ -209,16 +201,16 @@ class Syllabus extends StatelessWidget {
   Widget _buildSemesterDropdown() {
     return DropdownButtonFormField<String>(
       isDense: true,
-      value: resultController.currentSem.value,
+      value: syllabusController.currentSem.value,
       decoration: const InputDecoration(
         labelStyle: TextStyle(color: EColors.textColorPrimary1),
       ),
       hint: const Text("Select Semester's"),
       onChanged: (String? newValue) async {
         //print(newValue);
-        resultController.fetchSubject(newValue!);
+        syllabusController.fetchSubject(newValue!);
       },
-      items: resultController.semDropDown.value
+      items: syllabusController.semDropDown.value
     );
   }
 /*
@@ -226,7 +218,7 @@ class Syllabus extends StatelessWidget {
 
     return DropdownButtonFormField<String>(
       isDense: true,
-      value: resultController.currentSem.value,
+      value: syllabusController.currentSem.value,
       decoration: const InputDecoration(
         labelStyle: TextStyle(color: EColors.textColorPrimary1),
         //errorText:
@@ -244,7 +236,7 @@ class Syllabus extends StatelessWidget {
         //   _showMultiSelect(); // Show the bottom sheet after the data is loaded
         // }
         print(newValue);
-        resultController.fetchSubject(newValue!);
+        syllabusController.fetchSubject(newValue!);
       },
       //validator: (value) {
         //return null;
@@ -255,15 +247,15 @@ class Syllabus extends StatelessWidget {
         // return null;
       //},
 
-      items: resultController.semDropDown.value,
+      items: syllabusController.semDropDown.value,
     );
   }
  */
 
 }
 
-void navigateToSyllabusDetailsScreen( String semester, String examType) {
-  Get.to(() => SyllabusDetailsScreen(semester, examType));
+void navigateToSyllabusDetailsScreen( String SubjectId, String subjectName, String samester) {
+  Get.to(() => SubjectDetailsScreen(SubjectId, subjectName, samester));
 }
 
 class ShimmerLoading extends StatelessWidget {

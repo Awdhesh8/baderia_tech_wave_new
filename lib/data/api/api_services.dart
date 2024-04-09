@@ -1338,5 +1338,24 @@ class ApiService {
     }
   }
 
-
+  ///Get VT Letter History
+  static Future<List<String>> fetchTopicList(String sub_id, String unit)async {
+    final response = await http.post(
+      Uri.parse(APIConstants.getFullUrl(APIConstants.getsyllabus)),
+      headers: APIConstants.headers,
+      body: {
+        'APIKEY': 'GNCS0225',
+        //'sub_id': sub_id,
+        'sub_id': '49',
+        'unit' : unit,
+      },
+    );
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(response.body);
+      final List<String> topics = List<String>.from(jsonData['response']);
+      return topics;
+    } else {
+      throw Exception('Failed to load topics');
+    }
+  }
 }

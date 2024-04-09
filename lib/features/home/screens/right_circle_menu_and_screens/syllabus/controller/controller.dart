@@ -62,11 +62,17 @@ class SyllabusController extends GetxController {
   Rx<List<dynamic>?> subjectList = Rx<List<dynamic>?>(null);
   RxString course = ''.obs;
   RxString currentSem = ''.obs;
-  RxString selectedSem = ''.obs;
+  String selectedSem = '';
+  RxList<String> topicList = <String>[].obs;
 
   Rx<List<DropdownMenuItem<String>>> semDropDown =
   Rx<List<DropdownMenuItem<String>>>([]);
   final subject = <SubjectList>[].obs;
+  var selectedTabIndex = 0.obs;
+
+  void changeTabIndex(int index) {
+    selectedTabIndex.value = index;
+  }
 
   @override
   void onInit() async {
@@ -95,7 +101,7 @@ class SyllabusController extends GetxController {
 
   Future<void> fetchSubject(String semesterid) async {
     try {
-      selectedSem.value = semesterid;
+      selectedSem = semesterid;
       String result = await ApiService.getAllSubjectList(semesterid);
       Map<String, dynamic> jsonResponse = json.decode(result);
       subjectList.value = jsonResponse['response'];
