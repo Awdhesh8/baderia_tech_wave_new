@@ -373,7 +373,7 @@ class _TrainingState extends State<Training> {
               }).toList(),
             ),
           ),
-          // Add other widgets below the swiping cards
+          // Add other widgets below the swipin g cards
         ],
       ),
     );
