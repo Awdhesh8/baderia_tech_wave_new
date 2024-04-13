@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:baderia_tech_wave/utils/constants/colors.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,29 +18,52 @@ class Training extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /// Background Color
+      backgroundColor: EColors.backgroundColor,
+
+      /// GApp Bar
       appBar: const GAppBar(
         title: Text(
           'Training',
           style: TextStyleClass.appBarTextStyle,
         ),
+        centerTitle: false,
         showBackArrow: true,
+        backgroundColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
+        padding: EdgeInsets.all(10),
         physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                'NFC Training Hub',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black54),
+
+            /// Top Heading --->
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                children: [
+                  RichText(
+                    text: const TextSpan(
+                      text: 'Genius Lab',
+                      style: TextStyleClass.heading24,
+                      children: [
+                        TextSpan(text: ' Skill ',style: TextStyle(fontFamily: 'Inter')),
+                        TextSpan(
+                          text: '\nEnhancement Zone',
+                          style: TextStyleClass.heading22,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 5),
+
+            ///
             Obx(
-                  () {
+              () {
                 if (controller.isLoading.value) {
                   return _buildLoadingIndicator();
                 } else {
@@ -63,7 +87,8 @@ class Training extends StatelessWidget {
           baseColor: Colors.grey[300]!,
           highlightColor: Colors.grey[100]!,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
             child: Container(
               width: double.infinity,
               height: 100.0,
@@ -79,20 +104,23 @@ class Training extends StatelessWidget {
   }
 
   Widget _buildTrainingList() {
-    var currentTrainings = controller.trainingData.value['response']['current_training'];
-    var completedTrainings = controller.trainingData.value['response']['completed_trainings'];
+    var currentTrainings =
+        controller.trainingData.value['response']['current_training'];
+    var completedTrainings =
+        controller.trainingData.value['response']['completed_trainings'];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.only(left: 20,top: 10),
           child: Text(
-            'Current Trainings',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
+            'Your Current Trainings',
+            style: TextStyle(
+                fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Inter", color: EColors.primary),
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 0),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -102,11 +130,21 @@ class Training extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Text(
-            'Completed Trainings',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child:  Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                RichText(
+                  text: const TextSpan(
+                    text: 'Completed Trainings',
+                    style: TextStyleClass.heading22,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         Column(
@@ -119,6 +157,469 @@ class Training extends StatelessWidget {
   }
 }
 
+class CurrentTrainingCard extends StatelessWidget {
+  final Map<String, dynamic> training;
+
+  const CurrentTrainingCard({required this.training});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    training['training_name'],
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  Icon(
+                    FontAwesomeIcons.mobileAlt,
+                    color: Colors.blue,
+                    size: 32,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Icon(
+                    FontAwesomeIcons.calendarAlt,
+                    color: Colors.redAccent,
+                    size: 16,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                      'From: ${training['from_date']} - To: ${training['to_date']}'),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Row(
+                children: [
+                  Icon(
+                    FontAwesomeIcons.clock,
+                    color: Colors.lightBlueAccent,
+                    size: 16,
+                  ),
+                  const SizedBox(width: 4),
+                  Text('Timing: ${training['timing']}'),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Row(
+                children: [
+                  Icon(
+                    FontAwesomeIcons.infoCircle,
+                    color: Colors.black,
+                    size: 16,
+                  ),
+                  const SizedBox(width: 4),
+                  Text('Status: ${training['status']}'),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Row(
+                children: [
+                  Icon(
+                    FontAwesomeIcons.user,
+                    color: Colors.black54,
+                    size: 16,
+                  ),
+                  const SizedBox(width: 4),
+                  Text('Trainer: ${training['trainer']}'),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      _showAssignmentsBottomSheet(
+                          context, training['assignment']);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(255, 218, 218, 1),
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.15),
+                            blurRadius: 4,
+                            offset: Offset(0, 4),
+                          ),
+                        ],
+                      ),
+
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5),
+                            child: Text("Assignments", style: TextStyleClass.buttonStyle1,),
+                          ),
+                          SizedBox(width: 10),
+                          Image.asset('assets/images/assign.png', width: 30),
+
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  InkWell(
+                    onTap: () {
+                      _showStudyMaterialsBottomSheet(
+                          context, training['study_material']);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(255, 218, 218, 1),
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.15),
+                            blurRadius: 4,
+                            offset: Offset(0, 4),
+                          ),
+                        ],
+                      ),
+
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5),
+                            child: Text("Study Materials", style: TextStyleClass.buttonStyle1,),
+                          ),
+                          SizedBox(width: 10),
+                          Image.asset('assets/images/person.png', width: 20),
+
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showAssignmentsBottomSheet(
+      BuildContext context, List<dynamic> assignments) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return DraggableScrollableSheet(
+          initialChildSize: 0.5,
+          minChildSize: 0.2,
+          maxChildSize: 0.8,
+          expand: false,
+          builder: (BuildContext context, ScrollController scrollController) {
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
+              child: Column(
+                children: [
+                  _buildDragHandle(),
+                  Expanded(
+                    child: ListView.builder(
+                      controller: scrollController,
+                      itemCount: assignments.length,
+                      itemBuilder: (context, index) {
+                        var assignment = assignments[index];
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ListTile(
+                              title: Text(
+                                assignment['title'],
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      'Assign Date: ${assignment['assign_date']}'),
+                                  Text('Last Date: ${assignment['last_date']}'),
+                                  Text(
+                                      'Description: ${assignment['description']}'),
+                                ],
+                              ),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(Icons.link),
+                                    onPressed: () =>
+                                        _openLink(assignment['links'][0]),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.download),
+                                    onPressed: () => _downloadFile(
+                                        assignment['attachments'][0]['link']),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            if (assignment['attachments'] != null &&
+                                assignment['attachments'].isNotEmpty) ...[
+                              for (var attachment
+                                  in assignment['attachments']) ...[
+                                ListTile(
+                                  title:
+                                      Text('Attachment: ${attachment['name']}'),
+                                  trailing: IconButton(
+                                    icon: Icon(Icons.download),
+                                    onPressed: () =>
+                                        _downloadFile(attachment['link']),
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  void _showStudyMaterialsBottomSheet(
+      BuildContext context, List<dynamic> studyMaterials) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return DraggableScrollableSheet(
+          initialChildSize: 0.5,
+          minChildSize: 0.2,
+          maxChildSize: 0.8,
+          expand: false,
+          builder: (BuildContext context, ScrollController scrollController) {
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
+              child: Column(
+                children: [
+                  _buildDragHandle(),
+                  Expanded(
+                    child: ListView.builder(
+                      controller: scrollController,
+                      itemCount: studyMaterials.length,
+                      itemBuilder: (context, index) {
+                        var studyMaterial = studyMaterials[index];
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ListTile(
+                              title: Text(
+                                studyMaterial['title'],
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      'Description: ${studyMaterial['description']}'),
+                                ],
+                              ),
+                              trailing: IconButton(
+                                icon: Icon(Icons.link),
+                                onPressed: () =>
+                                    _openLink(studyMaterial['links'][0]),
+                              ),
+                            ),
+                            if (studyMaterial['attachments'] != null &&
+                                studyMaterial['attachments'].isNotEmpty) ...[
+                              for (var attachment
+                                  in studyMaterial['attachments']) ...[
+                                ListTile(
+                                  title:
+                                      Text('Attachment: ${attachment['name']}'),
+                                  trailing: IconButton(
+                                    icon: Icon(Icons.download),
+                                    onPressed: () =>
+                                        _downloadFile(attachment['link']),
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildDragHandle() {
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(vertical: 8),
+      child: Container(
+        width: 50,
+        height: 6,
+        decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.all(Radius.circular(50))),
+      ),
+    );
+  }
+
+  Future<void> _downloadFile(String url) async {
+    final response = await http.get(Uri.parse(url));
+    final bytes = response.bodyBytes;
+    final fileName = url.substring(url.lastIndexOf('/') + 1);
+    final path = await _localPath;
+    File file = File('$path/$fileName');
+    await file.writeAsBytes(bytes);
+  }
+
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<void> _openLink(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+}
+
+class CompletedTrainingCard extends StatelessWidget {
+  final Map<String, dynamic> training;
+
+  const CompletedTrainingCard({required this.training});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    training['training_name'],
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  const Icon(
+                    FontAwesomeIcons.mobileAlt,
+                    color: Colors.blue,
+                    size: 32,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                  'From: ${training['from_date']} - To: ${training['to_date']}'),
+              const SizedBox(height: 4),
+              Text('Timing: ${training['timing']}'),
+              const SizedBox(height: 4),
+              Text('Status: ${training['status']}'),
+              const SizedBox(height: 4),
+              Text('Trainer: ${training['trainer']}'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+/*
+ElevatedButton(
+                    onPressed: () {
+                      _showAssignmentsBottomSheet(
+                          context, training['assignment']);
+                    },
+                    child: Row(
+                      //crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Icon(
+                        //   FontAwesomeIcons.tasks,
+                        //   size: 16,
+                        // ),
+                        const Text('Assignments'),
+                        const SizedBox(width: 4),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 6),
+                          child: Image.asset('assets/images/assignment.png', width: 30),
+                        ),
+                      ],
+                    ),
+
+                  ),
+ */
+
+
+/*
 class CurrentTrainingCard extends StatelessWidget {
   final Map<String, dynamic> training;
 
@@ -419,65 +920,7 @@ class CurrentTrainingCard extends StatelessWidget {
     }
   }
 }
-
-class CompletedTrainingCard extends StatelessWidget {
-  final Map<String, dynamic> training;
-
-  const CompletedTrainingCard({required this.training});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.3),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: const Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    training['training_name'],
-                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  const Icon(
-                    FontAwesomeIcons.mobileAlt,
-                    color: Colors.blue,
-                    size: 32,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Text('From: ${training['from_date']} - To: ${training['to_date']}'),
-              const SizedBox(height: 4),
-              Text('Timing: ${training['timing']}'),
-              const SizedBox(height: 4),
-              Text('Status: ${training['status']}'),
-              const SizedBox(height: 4),
-              Text('Trainer: ${training['trainer']}'),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
+ */
 
 /// ----
 /*
@@ -714,7 +1157,6 @@ class CompletedTrainingCard extends StatelessWidget {
 
  */
 
-
 /// ---->>>>
 /*
 import 'package:flutter/material.dart';
@@ -834,7 +1276,6 @@ class Training extends StatelessWidget {
 
 
  */
-
 
 /*
 import 'package:baderia_tech_wave/utils/constants/teext_styles.dart';
@@ -1016,7 +1457,6 @@ class Training extends StatelessWidget {
 
  */
 
-
 /*
 import 'package:baderia_tech_wave/utils/constants/teext_styles.dart';
 import 'package:flutter/material.dart';
@@ -1112,7 +1552,6 @@ class _TrainingState extends State<Training> {
 
 
  */
-
 
 /*
 import 'package:baderia_tech_wave/utils/constants/teext_styles.dart';
