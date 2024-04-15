@@ -1,8 +1,9 @@
+
 import 'package:flutter/material.dart';
 
-class StackContainer extends StatelessWidget {
+class StackContainer1 extends StatelessWidget {
   final Widget? child;
-  const StackContainer({
+  const StackContainer1({
     super.key, this.child,
   });
 

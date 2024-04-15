@@ -7,6 +7,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../../common/widgets/appbar/appbar.dart';
+import '../../../../../common/widgets/stack_containers/stack_containers1.dart';
 import '../../../../../utils/constants/teext_styles.dart';
 import 'controller/training_controller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -112,24 +113,46 @@ class Training extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 20,top: 10),
-          child: Text(
-            'Your Current Trainings',
-            style: TextStyle(
-                fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Inter", color: EColors.primary),
-          ),
-        ),
+        // const Padding(
+        //   padding: EdgeInsets.only(left: 20,top: 10),
+        //   child: Text(
+        //     'Your Current Trainings',
+        //     style: TextStyle(
+        //         fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Inter", color: EColors.primary),
+        //   ),
+        // ),
         const SizedBox(height: 0),
         SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: currentTrainings.map<Widget>((training) {
-              return CurrentTrainingCard(training: training);
-            }).toList(),
+            children: [
+              RotatedBox(
+                quarterTurns: -1,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 2),
+                  child: Text(
+                    'Your Current Training\'s',
+                    style: TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold, fontFamily: "Inter", color: EColors.primary),
+                  ),
+                ),
+              ),
+              Row(
+                children: currentTrainings.map<Widget>((training) {
+                  return CurrentTrainingCard(training: training);
+                }).toList(),
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 20),
+
+        const SizedBox(height: 8),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Divider(),
+        ),
+        const SizedBox(height: 8),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child:  Padding(
@@ -269,7 +292,6 @@ class CurrentTrainingCard extends StatelessWidget {
                           ),
                         ],
                       ),
-
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -279,7 +301,6 @@ class CurrentTrainingCard extends StatelessWidget {
                           ),
                           SizedBox(width: 10),
                           Image.asset('assets/images/assign.png', width: 30),
-
                         ],
                       ),
                     ),
